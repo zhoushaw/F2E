@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        .box{
+            height: 200px;
+            width: 200px;
+            background: red;
+
+        }
+        .content{
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oDiv = document.querySelector('.content');
+
+            var oBox = document.querySelector('.box');
+            /**
+             * 监听对应事件，并且可以添加对应配置
+             *
+             * type 事件类型
+             * listener ，执行事件后对应的回调函数
+             * useCaputre  设置是否进行捕获
+             */
+            // target.addEventListener(type, listener ,{capture: Boolean, bubbling: Boolean, once: Boolean});
+
+            oDiv.addEventListener('click',function(e){
+                console.log(e.target);
+            })
+
+
+            // 事件触发顺序依次是捕获阶段，目标事件，冒泡事件
+            oBox.addEventListener('click',function(e){
+                console.log(e.currentTarget);
+            },false)
+            oBox.addEventListener('click',function(e){
+                console.log(e.currentTarget);
+            },true)
+
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="content"></div>
+    </div>
+</body>
+</html>

