@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('get','https://a1.cnblogs.com/units/image/C2/creative');
+            xhr.send();
+            xhr.onreadystatechange = function(){
+                console.log(xhr.response)
+            }
+            var proxy = function(url, callback) {
+                var state = 0;
+                var iframe = document.createElement('iframe');
+                var img = document.createElement('span');
+                document.body.appendChild(img);
+                // 加载跨域页面
+                iframe.src = url;
+
+                // onload事件会触发2次，第1次加载跨域页，并留存数据于window.name
+                iframe.onload = function() {
+                    console.log(1);
+
+                };
+                console.log(iframe);
+                document.body.appendChild(iframe);
+
+                // 获取数据以后销毁这个iframe，释放内存；这也保证了安全（不被其他域frame js访问）
+                function destoryFrame() {
+                    iframe.contentWindow.document.write('');
+                    iframe.contentWindow.close();
+                    document.body.removeChild(iframe);
+                }
+            };
+
+            // 请求跨域b页面数据
+            proxy('https://a1.cnblogs.com', function(data){
+                alert(data);
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

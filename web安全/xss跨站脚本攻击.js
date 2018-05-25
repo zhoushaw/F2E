@@ -3,7 +3,7 @@
  * 跨站脚本攻击指的是攻击者往web页面里插入恶意的html标签或javascript标签
  *
  * 例如:
- *  1.攻击者在页面中放了一个看似安全的链接<a href="javascript:console.log(document.cookie);">链接</a>,
+ *  1.攻击者在页面中放了一个看似安全的链接<a href="javascript:console.log(document.cookie);"链接</a,
  *  这样成功的读取了cookie并可以将其发送至对应的服务器
  *  2.或者在论坛中，添加评论是web端没有进行对应的防护插入对应的表单并且成功了
  *  这样用户将会将信息发送至攻击者的服务器

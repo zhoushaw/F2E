@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function crossDomain(url, fn) {
+            iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            var state = 0;
+
+            iframe.onload = function() {
+                if(state === 1) {
+                    fn(iframe.contentWindow.name);
+                    iframe.contentWindow.document.write('');
+                    iframe.contentWindow.close();
+                    document.body.removeChild(iframe);
+                } else if(state === 0) {
+                    state = 1;
+                    iframe.contentWindow.location = 'www.baidu.com/proxy.html';
+                }
+            };
+
+            iframe.src = url;
+            document.body.appendChild(iframe);
+        }
+
+        // 调用
+        // 服务器地址
+        var url = 'www.baidu.com/data.php';
+        crossDomain(url, function(data) { // 处理数据 data就是window.name的值(string)
+            var data = JSON.parse(iframe.contentWindow.name);
+            console.log(data);
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

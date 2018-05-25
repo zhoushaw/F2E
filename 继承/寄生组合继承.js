@@ -11,8 +11,8 @@ inheritPrototype(Child,Father);
 
 function createdFn(proto){
     function Fn(){}
-    Fn.prototype = proto;
-    return new Fn();
+    var Fn = Object.create(proto);
+    return Fn;
 }
 
 

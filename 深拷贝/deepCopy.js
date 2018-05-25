@@ -1,3 +1,5 @@
+
+// 考虑普通类型
 function deepCopy(obj){
     let newObj = null;
     // 普通类型直接返回
@@ -5,12 +7,7 @@ function deepCopy(obj){
         return obj;
     }
 
-    if(isNormalType(obj)==='object') {
-
-        newObj = {};
-    }else if(isNormalType(obj)==='array') {
-        newObj = [];
-    }
+    newObj = isNormalType(obj)==='object'?{}:[];
 
     for (var i in obj) {
         if (!isNormalType(obj[i])) {
@@ -20,6 +17,8 @@ function deepCopy(obj){
         }
     }
     return newObj;
+
+
     function isNormalType(item){
         var type = Object.prototype.toString.call(item);
         if(type=='[object Array]'){
