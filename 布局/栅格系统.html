@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      max-width: 1024px;
+      margin: 0 auto;
+      font: 1.2em Helvetica, arial, sans-serif;
+    }
+    .wrapper > * {
+      border: 2px solid #f08c00;
+      background-color: #ffec99;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(12, [col-start] 1fr);
+      grid-gap: 20px;
+    }
+    .item1 {
+      grid-column: col-start / span 3;
+    }
+    .item2 {
+      grid-column: col-start 6 / span 4 ;
+      grid-row: 1 / 3;
+    }
+    .item3 {
+      grid-column: col-start 2 / span 2;
+      grid-row: 2;
+    }
+    .item4 {
+      grid-column: col-start 3 / -1;
+      grid-row: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="item1">1.Start column line 1, span 3 column tracks.</div>
+    <div class="item2">2.Start column line 6, span 4 column tracks. 2 row tracks.</div>
+    <div class="item3">3.Start row 2 column line 2, span 2 column tracks.</div>
+    <div class="item4">4.Start at column line 3, span to the end of the grid (-1).</div>
+  </div>
+</body>
+</html>

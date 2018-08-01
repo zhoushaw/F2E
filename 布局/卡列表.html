@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {box-sizing: border-box;}
+  img {max-width: 100%; display: block;}
+  body {
+      font: 1.2em Helvetica, arial, sans-serif;
+  }
+  a:link, a:visited {
+    text-decoration: none;
+    color: #f08c00;
+  }
+
+  h2 {
+    background-color: #f08c00;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  .listing {
+    list-style: none;
+    margin: 2em;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+  }
+  .listing li {
+    border: 1px solid #ffe066;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .listing .cta {
+    margin-top: auto;
+    border-top: 1px solid #ffe066;
+    padding: 10px;
+    text-align: center;
+  }
+  .listing .body {
+    padding: 10px;
+  }
+</style>
+<body>
+  
+  <ul class="listing">
+    <li>
+      <h2>Item One</h2>
+      <div class="body"><p>The content of this listing item goes here.</p></div>
+      <div class="cta"><a href="">Call to action!</a></div>
+    </li>
+     <li>
+       <h2>Item Two</h2>
+       <div class="body"><p>The content of this listing item goes here.</p></div>
+       <div class="cta"><a href="">Call to action!</a></div>
+     </li>
+     <li class="wide">
+       <h2>Item Three</h2>
+       <div class="body"><p>The content of this listing item goes here.</p> 
+       <p>This one has more text than the other items.</p>
+       <p>Quite a lot more</p>
+       <p>Perhaps we could do something different with it?</p></div>
+       <div class="cta"><a href="">Call to action!</a></div>
+      </li>
+      <li>
+       <h2>Item Four</h2>
+       <div class="body"><p>The content of this listing item goes here.</p></div>
+       <div class="cta"><a href="">Call to action!</a></div>
+      </li>
+       <li>
+       <h2>Item Five</h2>
+       <div class="body"><p>The content of this listing item goes here.</p></div>
+        <div class="cta"><a href="">Call to action!</a></div>
+      </li>
+  </ul>
+  
+</body>
+</html>

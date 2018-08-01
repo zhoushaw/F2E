@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 基本样式 */
+    * {box-sizing: border-box;}
+    .wrapper {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+    .wrapper > * {
+        border: 2px solid #f08c00;
+        background-color: #ffec99;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* grid模块名 */
+    .main-header {
+        grid-area: header;
+    }
+    .content {
+        grid-area: content;
+    }
+    .main-nav {
+        grid-area: nav;
+    }
+    .side {
+        grid-area: sidebar;
+    }
+    .ad {
+        grid-area: ad;
+    }
+    .main-footer {
+        grid-area: footer;
+    }
+
+    /* 普通pc大小布局 */
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "content"
+            "sidebar"
+            "ad"
+            "footer";
+    }
+
+    /* 700px大小布局 */
+    @media (min-width: 500px) {
+        .wrapper {
+            grid-template-columns: 1fr 3fr;
+            grid-template-areas: 
+            "header  header"
+            "nav     nav"
+            "sidebar content"
+            "ad      footer";
+        }
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    @media (min-width: 700px) {
+        .wrapper {
+            grid-template-columns: 1fr 4fr 1fr;
+            grid-template-areas: 
+            "header header  header"
+            "nav    content sidebar"
+            "nav    content ad"
+            "footer footer  footer"
+        }
+        nav ul {
+            flex-direction: column;
+        }
+    }
+
+  </style>
+</head>
+<body>
+    <section class="wrapper">
+        <header class="main-header">The header</header>
+        <nav class="main-nav">
+        <ul>
+            <li><a href="">Nav1</a></li>
+            <li><a href="">Nav2</a></li>
+            <li><a href="">Nav3</a></li>
+        </ul>
+        </nav>
+        <article class="content">
+        <h3>Main article area</h3>
+        <p>
+            In this layout,we display the areas in source order for any screen less that 500 pixels wide.We go to a two column layout,and then to a three column layout by redeining the grid, and the placement of items on the grid.
+        </p>
+        </article>
+        <aside class="side">Sidebar</aside>
+        <section class="ad">Advertising</section>
+        <footer class="main-footer">The footer</footer>
+    </section>
+</body>
+</html>
