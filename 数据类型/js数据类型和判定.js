@@ -37,3 +37,22 @@ var str = Symbol();
 console.log(Object.prototype.toString.call(str));
 
 console.log(null==false);
+
+
+
+/**
+ * 正确变量类型：null undefined string number boolean object
+ */
+
+let class2type = {};
+
+"Undefined Null Number Boolean String Object".split(' ').forEach((key) => {
+    class2type[`[object ${key}]`] = key.toLowerCase();
+})
+
+function type(value) {
+    let key = Object.prototype.toString.call(value);
+    return class2type[key];
+}
+
+console.log(type({}));
