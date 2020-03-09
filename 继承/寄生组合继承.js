@@ -9,15 +9,9 @@ function Child(){
 
 inheritPrototype(Child,Father);
 
-function createdFn(proto){
-    function Fn(){}
-    var Fn = Object.create(proto);
-    return Fn;
-}
-
 
 function inheritPrototype(child,father){
-    var prototype = createdFn(father.prototype);
+    var prototype = Object.create(father.prototype);
     prototype.constructor = child;
     child.prototype = prototype;
 }

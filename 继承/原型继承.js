@@ -15,8 +15,9 @@ function Child(){
 Child.prototype = new Father();
 
 var child = new Child();
-
-console.log(child2.obj);
+var child2 = new Child();
+child.obj.name = 'zhou'
+console.log(child.obj);
 
 // new出来的实例，上有一个__proto__属性，这个属性指向它的原型，原型上有constructor指向它的构造函数，通过这种引用关系可以使用到它的方法和属性
 
