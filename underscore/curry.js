@@ -4,15 +4,25 @@
 * */
 
 
-function curry(fn,...args){
-    return fn.length>args.length?(...nArgs)=>curry(fn,...args,...nArgs):fn(...args);
+// function curry(fn,...args){
+//     return fn.length>args.length?(...nArgs)=>curry(fn,...args,...nArgs):fn(...args);
+// }
+
+// function add(a,b,c) {
+//     return a+b+c;
+// }
+
+// var newAdd = curry(add);
+// console.log(newAdd(1)(2)(3));
+
+
+function curry(fn,...args) {
+    return args.length<fn.length?(...nArgs)=>curry(fn,...args,...nArgs):fn(...args)
 }
 
-function add(a,b,c) {
+function add(a,b,c){
     return a+b+c;
 }
 
-var newAdd = curry(add);
-console.log(newAdd(1)(2)(3));
-
-
+var nAdd = curry(add);
+console.log(nAdd(1)(2)(3).count());
