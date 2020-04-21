@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function jsonp() {
+            return new Promise((resolve, reject) => {
+                var script = document.createElement('script');
+                window['cb1'] = (data) => {
+                    resolve(data);
+                    delete window.cb1;
+                }
+                script.setAttribute('src',"http://baidu.com?cb=cb1");
+                document.head.appendChild(script);
+            })
+        }
+        jsonp().then(res=>{
+            console.log(res);
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

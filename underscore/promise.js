@@ -113,6 +113,32 @@ MyPromise.prototype.then = function (resolve,reject){
         }
     });
 }
+
+MyPromise.prototype.all = function(promises){
+    var resList = [];
+    for(var i=0;i<promises.length;i++){
+        promises[i].then((res)=>{
+            resList.push(res);
+            if(resList.length===promises.length) resolve(resList);
+        },(err)=>{
+            reject(err);
+            break;
+        });
+    }
+}
+MyPromise.prototype.race = function(promises){
+    for(var i=0;i<promises.length;i++){
+        promises[i].then((res)=>{
+            resolve(res);
+            break;
+        },(err)=>{
+            reject(err);
+            break;
+        })
+    }
+}
+
+
 var promise = new MyPromise(function(resolve,reject) {
     setTimeout(() => {
         resolve(3);
