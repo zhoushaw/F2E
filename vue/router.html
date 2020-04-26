@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生实现hash和browser两种路由模式</title>
+</head>
+<body>
+    <div class="router_box">
+        <a href="/home" class="router" replace="true">主页</a>
+        <a href="/news" class="router">新闻</a>
+        <a href="/team" class="router">团队</a>
+        <a href="/about" class="router">关于</a>
+        <a href="/abcd" class="router">随便什么</a>
+    </div>
+    <div id="router-view"></div>
+    <script>
+        function Router(params){
+            // 记录routes配置
+            this.routes = params.routes || [];
+            // 记录路由模式
+            this.mode = params.mode || 'hash';
+            console.log('this.mode', this.mode);
+            // 初始化
+            this.init = function(){
+                // 绑定路由响应事件
+                var that = this;
+                document.querySelectorAll(".router").forEach((item,index)=>{
+                    item.addEventListener("click",function(e){
+                        // 阻止a标签的默认行为
+                        if ( e && e.preventDefault ){
+                            e.preventDefault(); 
+                        }else{
+                            window.event.returnValue = false;  
+                        } 
+                        
+                        if (that.mode == 'hash'){
+                            // 判断是replace方法还是push方法
+                            if (this.getAttribute("replace")){
+                                var i = window.location.href.indexOf('#')
+                                // 通过replace方法直接替换url
+                                window.location.replace(
+                                    window.location.href.slice(0, i >= 0 ? i : 0) + '#' + this.getAttribute("href")
+                                )
+                            }else{
+                                // 通过赋值追加
+                                window.location.hash = this.getAttribute("href");
+                            }
+                        }else{
+                            if (this.getAttribute("replace")){
+                                window.history.replaceState({}, '', window.location.origin+this.getAttribute("href"))
+                                that.routerChange();
+
+                            }else{
+                                window.history.pushState({}, '', window.location.origin+this.getAttribute("href"))
+                                that.routerChange();
+
+                            }
+                        }
+                        
+                    }, false);
+                });
+                // 监听路由改变
+                if (this.mode == 'hash'){//hash模式时监听hashchange
+                    window.addEventListener("hashchange",()=>{
+                        this.routerChange();
+                    });
+                }else{//history模式时监听popstate事件
+                    window.addEventListener('popstate', e => {
+                        console.log(123);
+                        this.routerChange();
+                    })
+                }
+                this.routerChange();
+            },
+            // 路由改变监听事件
+            this.routerChange = function(){
+                if (this.mode == 'hash'){
+                    let nowHash=window.location.hash;
+                    let index=this.routes.findIndex((item,index)=>{
+                        return nowHash == ('#'+item.path);
+                    });
+                    if(index>=0){
+                        document.querySelector("#router-view").innerHTML=this.routes[index].component;
+                    }else {
+                        let defaultIndex=this.routes.findIndex((item,index)=>{
+                            return item.path=='*';
+                        });
+                        if(defaultIndex>=0){
+                            const i = window.location.href.indexOf('#')
+                            window.location.replace(
+                                window.location.href.slice(0, i >= 0 ? i : 0) + '#' + this.routes[defaultIndex].redirect
+                            )
+                        }
+                    }
+                }else{
+                    let path = window.location.href.replace(window.location.origin, '');
+                    let index=this.routes.findIndex((item,index)=>{
+                        console.log('path...', path, 'item.path...', item.path);
+                        return path == item.path;
+                    });
+                    if(index>=0){
+                        document.querySelector("#router-view").innerHTML=this.routes[index].component;
+                    }else {
+                        let defaultIndex=this.routes.findIndex((item,index)=>{
+                            return item.path=='*';
+                        });
+                        if(defaultIndex>=0){
+                            console.log(window.location.origin+this.routes[defaultIndex].redirect)
+                            window.history.pushState({}, '', window.location.origin+this.routes[defaultIndex].redirect)
+                            this.routerChange();
+                            
+                        }
+                    }
+                }
+            }
+            // 调用初始化
+            this.init();
+        }
+        new Router({
+            mode: 'history',
+            routes:[
+                { path: '/home', component: '<h1>主页</h1><h4>新一代前端工程师：我们啥都会</h4>' },
+                { path: '/news', component: '<h1>新闻</h1><h4>今天2019-6-11</h4>' },
+                { path: '/team', component: '<h1>团队</h1><h4>WEB前端工程师</h4>' },
+                { path: '/about', component: '<h1>关于</h1><h4>我们都要加油</h4>' },
+                { path:'*', redirect:'/home'}
+            ]
+        });
+    </script>
+</body>
+</html>

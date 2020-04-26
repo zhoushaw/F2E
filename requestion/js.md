@@ -9,6 +9,9 @@ object、array、function
 > 3.类型判断（typeof）
 string、number、boolean、undefined、symbol、object、function
 
+* NaN，是数字类型，但是数学运算没有成功，返回了失败的结果
+    * isNaN用于判断传入的变量是否能转换成数字，如果可以返回false，不可以返回true
+
 > 4.类型判断准确（toString）
 
 * Object.prototype.toString.call(val);
@@ -173,6 +176,27 @@ Function.prototype._call = function(){
 }
 ```
 
+* 实现bind
+    * 将this绑定到指定this对象
+    * 将目标函数的原型指向新返回函数的原型
+
+```javascript
+Function.prototype._bind = function(){
+    if (typeof this !== 'function') {
+        throw '调用必须为函数'
+    }
+    let [context,...args] = arguments;
+    var callFn = this;
+    var nFn = function(){
+        return callFn.apply(this instanceof nFn? this : context,args);
+    }
+    if (this.prototype) {
+        nFn.prototype = Object.create(this.prototype);
+    }
+    return nFn;
+}
+```
+
 > 14.模块化
 
 * 在JavaScript中分为两种模块化标准，commonJS、es6标准
@@ -201,3 +225,9 @@ Function.prototype._call = function(){
 
 > 17.如何实现继承，es6继承与之有何不同
 
+> 18.eval的用处
+
+* eval将传入的字符串当做javascript代码执行，返回执行结果
+* 传入的不是字符串将原样返回
+* 将字符串解析成对象，对象字符串外层需要包一下括号，否则会报错
+* 将代码在全局作用域执行,newfunction始终是当前作用域

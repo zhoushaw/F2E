@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function jsonp() {
-            return new Promise((resolve, reject) => {
-                var script = document.createElement('script');
-                window['cb1'] = (data) => {
-                    resolve(data);
-                    delete window.cb1;
-                }
-                script.setAttribute('src',"http://baidu.com?cb=cb1");
-                document.head.appendChild(script);
-            })
+        if ("onhashchange" in window) {
+            alert("该浏览器支持 hashchange 事件!");
         }
-        jsonp().then(res=>{
-            console.log(res);
-        });
 
+        function locationHashChanged() {
+            if (location.hash === "#somecoolfeature") {
+                somecoolfeature();
+            }
+        }
+
+        window.onhashchange = locationHashChanged;
     </script>
 </head>
 <body>
-    
+    <a href="#somecoolfeature"></a>
+    <!-- <div id="box"></div> -->
 </body>
 </html>
