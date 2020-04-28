@@ -105,7 +105,7 @@
 * 基础包分离
     * 通过html-webpack-externals-plugin，将基础包通过cdn方式引入，不打入bundle中
     * 通过splitChunksPlugin提取公共脚本、基础包、页面公共文件
-* DLL使用DDLPlugin进行分包，使用DLLPluginRefrencePlugin对mainfest.json进行引用，让一些基本不会改动的代码打成静态资源，避免反复编译浪费时间
+* DLL使用DDLPlugin进行分包，使用DLLPluginRefrencePlugin对manifest.json进行引用，让一些基本不会改动的代码打成静态资源，避免反复编译浪费时间
 * 充分利用二次缓存
     * babel-loader开启二次缓存
     * 使用cache-loader

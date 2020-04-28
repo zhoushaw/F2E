@@ -231,3 +231,5 @@ Function.prototype._bind = function(){
 * 传入的不是字符串将原样返回
 * 将字符串解析成对象，对象字符串外层需要包一下括号，否则会报错
 * 将代码在全局作用域执行,newfunction始终是当前作用域
+
+

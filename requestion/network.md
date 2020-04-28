@@ -121,6 +121,62 @@ SSL协议是位于http之下，TCP之上的协议
             * 简单请求：GET、HEAD、POST（content-type:text/plain、multipart/form-data、application/x-www-form-urlencoded），且没有人为设置首部字段集合之外的其他首部字段
             * 非简单请求，人为设置首部字段集合之外的其他首部字段
                 * content-type不属于（content-type:text/plain、multipart/form-data、application/x-www-form-urlencoded）
-            *  Access-Control-Allow-Credentials 为true，浏览器才会把响应结果传递给客户端程序
+            * Access-Control-Allow-Credentials 为true，浏览器才会把cookie响应结果传递给客户端程序
     * POSTmessage，跨窗口进行通信
+
+> 9.缓存
+
+* 浏览器缓存
+    * 缓存get请求200后的资源例如：HTML文档、图片、js，将这些资源缓存在本地
+    * 用户点击返回按钮、等操作直接从磁盘读取，减少时间，增加用户体验
+    * 浏览器对于缓存的处理是根据，第一次请求资源时返回的响应头来确定的
+    * from disk
+        * from dist or from memory
+        * 内存使用率很高会放在磁盘中，内存使用率很高放在memory中
+    * 响应头缓存字段
+        * Cache-Control（HTTP/1.1定义的关于缓存的字段，优先级大于Expires):
+            * no-cache、no-store：强制浏览器验证、不缓存
+            * max-age=2592000： 缓存的时长，秒为单位。它规定了过期的相对时间
+            * min-fresh：期望在指定时间内任有效
+            * only-if-cache：从缓存中读取
+            * no-transform: 代理不可更改类型
+        * Expires: 它规定了缓存过期的一个绝对时间（http1.0中定义的缓存字段），由于生成的时间是服务端的时间，判断的确实客户端的时间，客户端可以更改时间，所以后面引入了max-age
+        * last-Modified: 表示文件最后一次修改的时间
+        * ETag: 对文件的标记
+    * 强制缓存：
+        * 当浏览器访问资源响应头返回了expires或Cache-control:max-age=t(s)
+        * 当有Cache-control:max-age=t(s)时，以date加max-age与当前时间进行判断查看是否过期，没过期直接读取缓存资源
+        * 没有Cache-control有exprise，通过exprise与当前时间进行判断
+    * 协商缓存：
+        * 利用last-Modified、ETag浏览器会进入协商缓存阶段
+        * 会在本次请求头里携带：If-Moified-Since（为last-Modified）、If-None-Match（为ETag）这两个字段，服务器通过这两个字段来判断文件是否有修改
+        * 如果有修改会返回200和新的内容，没修改会返回304从缓存中直接读取
+    * Pragma(可以指定缓存策略): 
+        * `<meta http-equiv="Pragma" content="no-cache">`
+    
+* appacache
+    * 申明mainappcache文件，在里面可以列出哪些文件缓存，离线状态或出错指定404
+    * 标准已废弃
+* 代理服务器缓存
+
+> 10.http1.0、http1.1、http2.0
+
+
+* http1.0和http1.1
+    * 缓存：由原来的expirse、last-modify增加etag、if-none-match提供更多缓存头来控制缓存
+    * 带宽优化：1.0时会传输不需要的对象内容，且不支持断点传输。1.1支持断点传输，且只传输需要的部分
+    * 错误通知：1.1新增了多个错误状态码
+    * host头处理：1.1header增加了host，认为一个域名可能存在多个ip，可以指定机器
+    * 长连接：1.1支持长连接，在TCP连接上可以传递多个http请求和响应减少了建立和关闭连接的消耗和延迟，在1.1中默认开启connection:keep-alive
+* http1.x和http2.0
+    * 格式：http2.0采用二进制格式
+    * 效率：http2.0采用多路复用，一个连接可以多应多个http请求
+    * header压缩：采用header压缩来减少header的大小
+    * 服务端推送：http2.0服务端可以采取主动推送的方式
+    * http1.1长连接和http2.0多路复用有什么关系
+        * 长连接是使用队列的形式，建立一个tcp连接后，http按照队列阻塞的形式向服务端通信，某个任务比较耗时阻塞其他任务
+        * 多路复用可以在一个tcp连接上并行请求，相互之间不会受到影响
+
+
+
 
