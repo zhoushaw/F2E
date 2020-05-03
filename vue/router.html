@@ -94,7 +94,7 @@
                             )
                         }
                     }
-                }else{
+                } else{
                     let path = window.location.href.replace(window.location.origin, '');
                     let index=this.routes.findIndex((item,index)=>{
                         console.log('path...', path, 'item.path...', item.path);
@@ -119,7 +119,7 @@
             this.init();
         }
         new Router({
-            mode: 'history',
+            mode: 'hash',
             routes:[
                 { path: '/home', component: '<h1>主页</h1><h4>新一代前端工程师：我们啥都会</h4>' },
                 { path: '/news', component: '<h1>新闻</h1><h4>今天2019-6-11</h4>' },

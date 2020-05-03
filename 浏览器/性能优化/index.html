@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes animate {
+            from {
+                transform: translateX(0px);
+            }
+            to {
+                transform: translateX(400px);
+            }
+        }
+        div {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            animation: animate 2s infinite linear;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <button>click</button>
+    <script>
+        document.querySelector('button').onclick = () => {
+            // document.querySelector('div').style.marginLeft = '100px';
+            for (let i = 0; i < 3000; i++) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

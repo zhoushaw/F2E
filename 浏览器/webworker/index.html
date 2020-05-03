@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        //主线程 main.js
+        var worker = new Worker("worker.js");
+        worker.onmessage = function(event){
+            // 主线程收到子线程的消息
+            console.log('Received message ' + event.data.type,event.data.message);
+            
+        };
+        // 主线程向子线程发送消息
+        worker.postMessage({
+            type: "start",
+            value: 12345
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

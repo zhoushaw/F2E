@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='s1' onclick='alert("div");'>
+        test1
+        <ul id="s2" onclick='alert("ul");'>
+            test2
+            <li id="s3" onclick='alert("li");'>test3</li>
+        </ul>
+    </div>
+<script>
+    s1.addEventListener("click",function(e){
+        e.stopPropagation();
+        console.log('s1 冒泡事件 冒泡')
+    },true);
+    s2.addEventListener("click",function(e){
+        console.log("s2 冒泡事件 冒泡");
+    },false);
+    s3.addEventListener("click",function(e){
+        console.log("s3 冒泡事件 冒泡");
+    },false);
+</script>
+</body>
+</html>

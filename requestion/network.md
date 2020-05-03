@@ -172,11 +172,53 @@ SSL协议是位于http之下，TCP之上的协议
     * 格式：http2.0采用二进制格式
     * 效率：http2.0采用多路复用，一个连接可以多应多个http请求
     * header压缩：采用header压缩来减少header的大小
-    * 服务端推送：http2.0服务端可以采取主动推送的方式
+    * 服务端推送：http2.0服务端可以采取主动推送的方式,但是只能推送静态资源
     * http1.1长连接和http2.0多路复用有什么关系
         * 长连接是使用队列的形式，建立一个tcp连接后，http按照队列阻塞的形式向服务端通信，某个任务比较耗时阻塞其他任务
         * 多路复用可以在一个tcp连接上并行请求，相互之间不会受到影响
 
 
+> 11.websocket
+
+* 来源：
+    * socket不是协议，它是基于TCP/IP传输协议上的一层封装，可以理解为对TCP/IP的简单抽象
+    * Websocket是包装了应用层面上的socket，他实现了服务端和浏览器的双工通信，实现了server push
+    * 为解决http只能由客户端发起通信的问题，可以主动推送消息到客户端
+    * http单项请求的特点，服务端如果出现数据变化，客户端只能通过轮询的方式明白服务端发生了变化
+* 握手：
+    * webSocket在建立http连接后会进行两次握手
+    * 客户端发送在报文中发送upgrade: websocket，
+    * 服务端返回101,switch protocol，后续可以双工通信
+* 事件：
+    * onopen（开启）、message（接收消息）、err（错误）、close（关闭）
+* 心跳机制：
+    * 有可能某一方因为一场情况断开连接，在报错或者断开连接时请求连接
+    * 在建立连接后，每过一段时间向服务端发送'ping'服务端会返回'pong'确定双方还在通信。
+    * 若一段时间内服务端没返回pong，客户端断开连接，重连
 
 
+> 12.Preload
+
+* 提前加载资源，等到需要执行才执行
+* 不会影响onload事件，
+* 通过link标签，增加ref="preload"，通过http头增加rel="preload"
+* 提前加载路由文件，切换时才执行
+
+
+> 13.cookie和session
+
+* session存在于服务端，在用户第一次请求时生成session
+* 将sessionId放在cookie中返回给浏览器，后续http请求会携带cookie，cookie中存在sessionid
+* 服务端根据对应的sessionId找到对应的session，进行会话记录
+
+* session与cookie的区别：
+    * session存储在服务端，cookie存储在客户端
+    * 存储类型不同：session可以存储任何类型，cookie只能存储字符串
+    * 有效期不同：session一般失效时间较短，cookie可以长时间存储
+    * 存储大小不同：session可以存储量较大，cookie限制在4kb内
+
+> 14.JWT
+
+* 全称：json web token，通过生成token
+* 通过token代替session，服务端不用存储会话
+* 可以有效的方式CSRF跨站追踪攻击

@@ -6,13 +6,12 @@
  */
 
 function deepCopy(obj) {
-    if (typeof obj !== 'object' || obj === null) return obj;
-    // 正则、时间等
+    if (isNormalType(obj)) return obj;
     function type(val) {
-        return typeof val !== 'object'?typeof val : Object.prototype.toString.call(val).slice(8,-1).toLowerCase();
+        return Object.prototype.toString.call(val).slice(8,-1).toLowerCase();
     }
     function isNormalType(val) {
-        return typeof val !== 'object' || val === null;
+        return (typeof obj !== 'object' && typeof obj !== 'function') || val === null;
     }
 
     let vType = type(obj);
@@ -21,8 +20,23 @@ function deepCopy(obj) {
     var target = vType==='array'?[]:{};
 
     for(var i in obj) {
+        var nType = type(obj[i]);
         if (isNormalType(obj[i])) {
             target[i] = obj[i];
+        } else if (nType==='function'){
+            target[i] = eval(obj[i]);
+        } else if (target === obj[i]) {
+            target[i] = obj[i];
+            continue;
+        } else if (nType==='regexp'){
+            var reg = obj[i].valueOf();
+            var flag = '';
+            flag += obj[i].global?'g':'';
+            flag += obj[i].ignoreCase?'i':'';
+            flag += obj[i].multiline?'m':'';
+            target[i] = new RegExp(reg,flag);
+        } else if (nType==='date'){
+            target[i] = new Date(obj[i].valueOf());
         }else {
             target[i] = deepCopy(obj[i]);
         }
@@ -30,7 +44,7 @@ function deepCopy(obj) {
     return target;
 }
 
-var a = {s:'few',v:[{name:'zhou'}],ss:{name:['wfe']}}
+var a = {s:'few',v:[{name:'zhou'}],ss:{name:['wfe']},s: a,d: new Date()}
 var b = deepCopy(a);
 b.ss.name[1] = 'zhoushaw';
 b.v[0].name = 'chang';

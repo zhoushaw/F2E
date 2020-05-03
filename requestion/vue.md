@@ -118,3 +118,21 @@
     * 根据路由地址匹配对应组件
 
 
+> 12.打包多页
+
+* 多入口多出口，每个页面都是一个vue实例
+* 提取公共js，并缓存。每个页面单独js
+
+
+> 13.预渲染与服务端渲染
+
+* 预渲染：
+    * 实现：
+        * 通过prerender-spa-plugin插件应用，主要通过puppeter（chrome团队提供的，通过node.js控制无界面chrome）
+        * 通过运行项目，使用puppeter抓取已经渲染好的html、css、js、数据
+    * 优点：不需要部署node server每次动态解析填充数据，实现简单、
+    * 缺点：个性化内容无法支持、页面较多build较慢
+* 服务端渲染：
+    * 
+    * 通过vue-server-render对vue实例对象进行解析成最终html
+    
