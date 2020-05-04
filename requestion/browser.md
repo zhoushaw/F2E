@@ -276,3 +276,12 @@ var a = document.getElementById("testA");
     * native调用JavaScript
         * 通过webview的`loadUrl`,`webView.loadUrl("javascript:" + javaScriptString);`
         * `evaluateJavascript`,`webView.evaluateJavascript(javaScriptString,callback)`
+
+> 10.浏览器有几个线程
+
+* GUI渲染线程
+* JavaScript线程
+* 事件触发线程
+* 插件线程
+* 定时器触发线程
+* 异步http请求线程
