@@ -106,7 +106,6 @@
         * pushState
         * replaceState
 
-
 * router在浏览器端主要分为两种模式hash模式，history模式。可以配置默认hash模式
 * hash:
     * 主动跳转：window.location.replace函数、window.location.hash赋值
@@ -136,3 +135,11 @@
     * 
     * 通过vue-server-render对vue实例对象进行解析成最终html
     
+> 14.proxy和Object.definedProperty
+
+* 不同点：
+    * 属性劫持：
+        * Object.definedProperty是通过对对象上的属性进行劫持，如果属性也是对象需要深度遍历，新增属性需要对新属性进行劫持。
+        * Proxy直接通过对象代理，不需要遍历操作
+    * 操作内容：
+        * Proxy支持13中拦截方式，get、set、has、delete、apply等

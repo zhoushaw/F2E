@@ -233,3 +233,16 @@ Function.prototype._bind = function(){
 * 将代码在全局作用域执行,newfunction始终是当前作用域
 
 
+> 19.原型和原型链
+
+* [原型和原型链](https://juejin.im/post/5c72a1766fb9a049ea3993e6) 
+* [js原型重新赋值对象变化](http://www.mamicode.com/info-detail-266268.html)
+* 所有构造函数都是Function的实例，所有原型对象都是Object的实例除了Object.prototype。
+
+* 实现继承：
+
+> 20.正则
+
+* 常用方法：
+    * exec,返回匹配的数组
+    * test，匹配成功返回boolean

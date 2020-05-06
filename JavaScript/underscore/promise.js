@@ -139,11 +139,11 @@ MyPromise.prototype.race = function(promises){
 }
 
 
-var promise = new MyPromise(function(resolve,reject) {
-    setTimeout(() => {
-        resolve(3);
-    }, 3000);
-})
+// var promise = new MyPromise(function(resolve,reject) {
+//     setTimeout(() => {
+//         resolve(3);
+//     }, 3000);
+// })
 // 返回普通字符
 // promise
 // .then(res => {
@@ -153,11 +153,36 @@ var promise = new MyPromise(function(resolve,reject) {
 // .then(res => console.log(res))
 
 // 返回Promise对象
-promise.then(res => {
-  	console.log('第一次结果输出');
-    return new MyPromise((resolve,reject)=>{
-      setTimeout(() => {
-        resolve('第二次结果');
-      }, 3000);
-	});
-}).then(res => console.log(res))
+// promise.then(res => {
+//   	console.log('第一次结果输出');
+//     return new MyPromise((resolve,reject)=>{
+//       setTimeout(() => {
+//         resolve('第二次结果');
+//       }, 3000);
+// 	});
+// }).then(res => console.log(res))
+
+
+let serialPromises = (promises)=>{
+    return promises.reduce((pre,next)=>pre.then(()=>next).catch(()=>next),Promise.resolve())
+}
+
+var promise1 = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(1)
+    }, 1000)
+})
+var promise2 = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(2)
+    }, 1000)
+})
+var promise3 = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(3)
+    }, 1000)
+})
+
+serialPromises([promise1,promise2,promise3]).then((res)=>{
+    console.log(res);
+})
