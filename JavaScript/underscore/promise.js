@@ -186,3 +186,93 @@ var promise3 = new Promise((resolve) => {
 serialPromises([promise1,promise2,promise3]).then((res)=>{
     console.log(res);
 })
+
+
+// 并发
+
+// Promise.prototype.limit = function(promises,limit,callback){
+//     return new Promise((resolve)=>{
+//         var total = promises.length;
+//         var result = new Array(total);
+//         var reject = false;
+//         var done = 0;
+//         function run (p) {
+//             p.then((res)=>{
+//                 if (total > done) {
+//                     done++;
+//                     run(promises.shift())
+//                 } else {
+//                     resolve(result);
+//                 }
+//                 callback(res)
+//                 result.push(res);
+//             },reject((err)=>{
+//                 done++;
+//                 run(promises.shift())
+//                 reject = true;
+//             }))
+//         }
+
+//         promises.slice(0,limit).forEach((p,i)=>{
+//             run(p);
+//         })
+//     })
+// }
+
+var pm = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('val')
+        }, 1000)
+    })
+}
+var list = [pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm, pm,];
+// Promise.limit = function(promises,list,callback){
+//     return new Promise((resolve,reject)=>{
+//         var total = promises.length;
+//         var result = new Array(total);
+//         var done = 0;
+//         var reject = false;
+//         function run (p){
+//             p.then(res=>{
+//                 if(done<total){
+//                     done++;
+//                     run(promises.shift())
+//                     result.push(res)
+//                 } else {
+//                     resolve(result);
+//                 }
+//             },(err)=>{
+//                 reject = true;
+//                 reject(err);
+//             })
+//         }
+//         promises.slice(0,limit).forEach((p)=>{
+//             run(p);
+//         })
+//     })
+// }
+
+
+Promise.limit = function(promises,limit,callback){
+    return new Promise((resolve,reject)=>{
+        let total = promises.length;
+        let result = new Array(total);
+        let done = 0;
+        function run(p){
+            p().then((res)=>{
+                if(done<total){
+                    done++;
+                    callback(res);
+                    result.push(res);
+                    run(promises.shift())
+                } else {
+                    resolve(result);
+                }
+            })
+        }
+        promises.slice(0,limit).forEach((p)=>{
+            run(p);
+        })
+    })
+}

@@ -1,4 +1,7 @@
 
+[复习资料](https://juejin.im/post/5e8b163ff265da47ee3f54a6)
+
+
 > 1.基础数据类型
 
 string、number、boolean、null、undefined、symbol
@@ -199,6 +202,8 @@ Function.prototype._bind = function(){
 
 > 14.模块化
 
+[模块化文章](https://juejin.im/post/5aaa37c8f265da23945f365c)
+
 * 在JavaScript中分为两种模块化标准，commonJS、es6标准
 * commonJS是node中的模块化标准，而es6标准是ECMAScript后续推出的标准
 
@@ -211,6 +216,40 @@ Function.prototype._bind = function(){
 
 * node，13.2开始允许commonJS可以与es6混用，.mjs文件总是以 ES6 模块加载，.cjs文件总是以 CommonJS 模块加载
 * .js文件的加载取决于package.json里面type字段的设置
+
+
+* COMMONJS：
+    * node使用的方案
+    * 使用：
+        * require、module、exports、global
+        * 导入：require、导出module.exports、exports
+        * exports是module.exports的引用
+    * 特点：
+        * 使用同步导入
+* AMD：
+    * 特点：采用异步加载，所有模块加载完成后才会执行回调
+    * 使用：
+        * 使用：require，加回调函数，在回调函数中拿到加载的模块
+        * 定义：defined，如果模块本身有依赖，第一个参数为数组依赖的模块
+* CMD：
+    * [cmd和amd区别](https://blog.csdn.net/qq_38912819/article/details/80597101)
+    * require后第一时间，加载并执行模块，amd提前执行，cmd延迟执行
+    * CMD使用时才加载，
+* es6module
+    * 特点：
+        * es6模块不是对象，import命令会被静态分析，编译时导入，而不是在运行时加载
+        * 静态分析成为可能
+    * 使用：
+        * 导出：export、export default
+        * 导入：import，或import函数
+
+* commonJs和es6的区别：
+    * 输出：
+        * commonJS输出的是值得拷贝，es6输出的是值得引用
+        * commonJS运行时加载，es6编译时导入接口
+    * es6：是编译时导出接口，所以不会执行脚本
+    * commonJS：会执行脚本，然后导出值
+
 
 > 15.箭头函数的特点
 

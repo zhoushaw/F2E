@@ -1,10 +1,24 @@
+
+[vue常见问题](https://juejin.im/post/5d59f2a451882549be53b170)
+
 > 1.vue为什么实例上可以直接访问到data中的值
 
 * 在vue进行初始化的时候对data中的键进行遍历
 * 访问和修改实例上的属性都通过Object.definedProperty代理到了data上
 
 
-> 2.什么是MVVM
+> 2.什么是MVVM、MVC
+
+* MVC
+    * 分别是model、view、controller，model和view不直接联系，联系是单向的
+    * controller通过操控model来改变view
+* MVP：
+    * MVP从MVC演变而来，将controller变成了presenter，它与MVC相似，model提供数据，view提供视图，presenter提供行为
+    * 将view和model进行了分离，view不直接使用model，他们之间的通信通过presenter来进行，所有交互都发生在presenter中
+* MVVM：
+    * 将MVP中的presenter变成了ViewModel
+    * 实现了Observer，当数据发生变化时，视图也会改变。视图中的数据改变时，model层也会进行改变
+
 
 * MVVM架构是由MVC架构转换而来的，将其中的C部分转换成了VM（viewModel）
 * 不仅model层的数据改变，视图会跟着一起改变。视图层改变，model层也会跟着一起变化
@@ -108,11 +122,14 @@
 
 * router在浏览器端主要分为两种模式hash模式，history模式。可以配置默认hash模式
 * hash:
+    * URL中的hash值只是客户端的一种状态，浏览器不会将hash值带给后端
+    * 浏览器的hash值发生变化不会触发网络请求，并且会生成浏览记录，前进后退都不会受到影响
     * 主动跳转：window.location.replace函数、window.location.hash赋值
     * 返回、前进按钮：window.addeventListener('hashchange')
     * 根据路由地址匹配对应组件
 * history:
-    * 主动跳转：replaceState、pushState
+    * history是History Api来实现URL变化，不会触发网络请求并且，会留下浏览记录
+    * 主动跳转：replaceState、pushState，replace和push都不会触发popstate，需要手动触发重渲染
     * 返回、前进按钮：window.addeventListener('popstate')
     * 根据路由地址匹配对应组件
 
@@ -143,3 +160,134 @@
         * Proxy直接通过对象代理，不需要遍历操作
     * 操作内容：
         * Proxy支持13中拦截方式，get、set、has、delete、apply等
+
+> 14.vue和react选型
+
+[vue、react对比](https://juejin.im/post/5e153e096fb9a048297390c1)
+
+* 核心思想：
+    * vue：拥抱js+css+html的形式，将结构、表现、行为相分离的形式。提倡编写template，vue通过Object.definedProperty对数据更细致的监听，vue更加直观，对新手更友好
+    * react：拥抱函数式编程思想，all in js。将html、css、js全部融入js中，写页面就像是在写js。setState、props值更新后，render函数会重渲染，可以通过shoudUpdateMounted、pureCompound减少不必要的渲染，没有vue省事，生态比vue更好
+* 组件形式：
+    * vue通过xx.vue文件形式，组成template+script+css，使用模板语法
+    * react通过js文件来表示组件，由函数或者class来组成
+* 数据管理：
+    * vue和react都采取单向数据流，props的数据更新会触发子组件重渲染，反之则不行
+* 组件数据传参：
+    * vue通过props、$emit，传递和通信、
+    * react通过传递数据和回调函数的方式数据传递
+* 跨组件数据通信：
+    * vue通过provide、inject方式传递数据
+    * react通过Context传递值
+* class与style：
+    * vue可以传递字符串、数组、对象给class、传递数组、对象给style
+    * react通过className指定css的class，传递字符串变量不能传递数组、对象
+* 生命周期：
+    * vue：beforeCreated、created、beforeMounted、mounted、beforeUpdate、update、actived、deactived、beforeDestroy、destroy
+
+* 对比：
+    * 组件化：
+        * vue通过vue单文件形式表明一个组件，通过结构、表现、行为相分离。更符合web开发者习惯
+        * react通过函数或者类的形式，组织组件，函数式思想
+    * 生态：react生态比vue更好、社区更庞大，周边资源更多
+    * 支持：
+        * vue有evan you创立，由二十多个团队成员维护
+        * react由facebook，一个团队定期维护react，facebook内部使用react。相对而言react更稳定
+    * 上手：
+        * vue对新手更友好、官方文档更加清晰
+        * react相对而言上手难度更高一点
+    * 灵活性：
+        * vue通过模板的形式定义组件，没有reactjs函数那么灵活
+        * react多于跨平台有着更好的支持
+    * 渲染速度：
+        * vue有着更快的渲染速度，更小的体积
+* 总结：
+    * vue通过模板语法，可读性相对而言更好。
+    * react有更庞大的社区，生态、工具链
+    * vue更小更快
+    * react多跨端、表现更加灵活
+    * 两者都是视图型框架库，虚拟dom渲染、轻量级、响应式组件，易于集成周边工具
+
+> 15.vue组件通信有哪几种方式
+
+* props、$emit
+* ref、this.$parent、this.$children
+* eventBus,$emit、$on
+* provide、inject
+* vuex跨组件通信
+
+> 16.vuex
+
+[vuex源码分析](https://zhuanlan.zhihu.com/p/78981485)
+
+* vuex是vue的状态管理系统，每个vuex的核心是store
+* state是存储的状态
+* getter允许组件从store中获取值
+* mutation，同步更改state中的值
+* action
+    * 通过提交mutation更改值，定义的函数第一个参数是当前上下文
+    * 有commit，可以用于提交mutation
+    * 可以通过store.dispatch提交值
+* module，将store分割成模块，每个模块都有自己的state、mutation、action、getter
+
+* vuex源码：
+    * 通过vue.use注入，提供install函数来进行插件安装
+    * 将vueInit混入vue的beforecreated中
+    * 在beforeCreated时，将根节点的store，放到this.$store中
+    * 构造函数初始化变量、执行安装module、通过VM使store响应式
+    * 注册moutation、getter、递归安装所有子module。如果有nameSpace，处理nameSpace
+    * vuex将数据放到全局store中，再将store放到每个vue组件实例上
+        * 通过vue混入机制，将vuexinit混入到vue的beforCreated生命周期
+        * 将根组件的store赋值给$store,自组将在创建前，将父组件的store赋值给子组件的$store
+    * vuex数据响应式：
+        * 借助vue的data数据响应式，将data存入vue实例组件的data中
+        * vuex中的getter则是借助vue的计算属性computed实现的
+        * vuex中对getter进行了遍历，拦截了get，在访问getter的时候实际上访问的是vue实例上的computed属性
+        * computed会生成一个watcher，data中的数据会收集当前的watcher，值更新时触发watcher更新
+
+> 17.keep-alive
+
+[keep-alive原理](https://juejin.im/post/5cce49036fb9a031eb58a8f9)
+
+
+* keep-alive是vue的一个抽象组件，它不渲染任何dom，也不会出现在父组件链中
+* 使用keep-alive包裹活动组件，在不活动时缓存它而不是销毁它
+
+* 使用：
+    * 通过include、exclude，max定义缓存组件上线
+    * 超过上线使用LRU策略，换缓存，LRU：最近最少使用的组件，给每个组件配置一个时间，替换掉时间最久的组件或页面
+
+* 原理：
+    * 在created的时候定义缓存虚拟dom、缓存虚拟dom键的合集
+    * 在moudted中监听白名单和黑名单的变动，然后实时的删除
+    * 在destoryed时，删除cache中的vnode实例，删除缓存要执行实例的destory钩子函数
+    * 缓存步骤：
+        * 1.获取keep-alive中包裹的组件对象已经名称
+        * 2.根据设置的白名单查看组件是否需要缓存，不匹配直接返回组件实例Vnode，否则进行缓存
+        * 3.根据组件id和tag生成缓存key，并在缓存对象中查看是否缓存过组件实例，如果存在直接更新该key在this.keys中的位置（更新key的位置时LRU算法的关键）
+        * 4.在this.cache中存储该组件实例并保存key值，之后检查缓存的实例数量是否超过max值，超过通过LRU算法删除，最近最久未使用的组件
+        * 5.最后将该组件的keepalive属性设置为True
+    * vue渲染过程：
+        * init=>$mounted=>compile=>render=>vnode=>patch=>DOM
+        * vue在渲染时会调用原型上的_render函数将组建转换成一个vnode实例，而_render是调用createElement、createElementVnode两个函数做实例转化
+        * 完成Vnode实例化后，这时候Vue调用原型上的_update函数把Vnode渲染成真实DOM，这个过程通过path函数完成
+        * 在加载被包裹组件时，根据虚拟dom的compoenntinstanceof和keep-alive值判断是否有缓存，如果没有缓存会限制性keep-alive的render函数，通过render函数将被包裹组件进行缓存
+        * 再次访问被包裹组件，vnode.componentInstance的值，已经是缓存组件的实例了，直接把上一次的dom插入到了父元素中
+    * keep-alive不生成DOM：
+        * vue在初始化生命周期为父子组件建立生命周期时根据abstract会忽略某个组件
+    * 只执行一次钩子：
+        * 由于被缓存组件设置了keep-alive并且已有组件缓存了，不再进入到$mount过程中，所以create、mouted生命周期不执行
+        * 在path的最后阶段会调用组件自身的actived函数
+
+> 18.minx和extend
+
+* mixin
+    * 使用：可以在vue实例上混入options，可以混入到全局，每个实例都会有
+    * 原则：
+        * 实例和mixin都有相同的data属性，以组件为准
+        * 实例和mixin有同名的属性和方法一组件为准
+        * 构造函数会合并都会调用，混入方法先调用
+* extend：
+    * 是vue的构造函数，可以创建构造函数，在里面也可以混入，是单独的实例
+    * 在里面使用mixin不会对Vue造成影响
+    * data必须是函数

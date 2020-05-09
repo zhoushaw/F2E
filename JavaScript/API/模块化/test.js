@@ -1,4 +1,7 @@
-import * as date from './export、module.export.js'
 
+console.log('执行了');
 
-console.log(date);
+export let say = function(){
+    console.log('helloworld');
+    
+}

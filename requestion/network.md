@@ -39,6 +39,11 @@
 
 > 4.https与http
 
+[https](https://juejin.im/post/59e4c02151882578d02f4aca#heading-5)
+
+![](https://user-gold-cdn.xitu.io/2018/5/21/1638197d96d391ca?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
 为什么会出现https，因为http都是以明文的方式进行传输的，容易被读取修改
 
 https=http+ssl(secure scokets layer)，安全协议、是可以进行加密、身份认证的协议

@@ -81,9 +81,17 @@
 * 实现一个插件
     * 插件本身就是一个构造函数，在构造函数的原型上增加apply方法
     * apply方法的第一个参数是compiler
+    * compiler：
+        * Compiler 对象包含了 Webpack 环境所有的的配置信息，包括options、loader、plugin
+        * Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等
+    * Compiler 代表了整个 Webpack 从启动到关闭的生命周期，而 Compilation 只是代表了一次新的编译。
     * 可以在compiler在通过plugin注册回调，在webpack生命周期内的某个回调执行某个操作，例如entry、loader、plugin初始化完成等生命周期注册回调
     * compiler提供的第一个参数是compliation，第二个参数是callback，异步任务执行完了调用
     * compliation代表了资源版本，当前的资源，编译生成的资源、变化文件
+* 我有写过一个plugin
+    * 这个plugin，主要是可以将定义的toml配置文件，将配置文件中的标题之类信息放在html中
+    * 配合`html-webpack-plugin`在内部监听plugin的回调，更改plugin中的内容
+    * 根据模板，确定不同模板的头和尾
 
 > 12.优化webpack的构建速度
 
@@ -103,16 +111,49 @@
     * noParse，对完全不需要打包的库进行忽略
     * ignorePlugin
 * 基础包分离
+    * 基础包通过cdn引入，并配置externals
     * 通过html-webpack-externals-plugin，将基础包通过cdn方式引入，不打入bundle中
     * 通过splitChunksPlugin提取公共脚本、基础包、页面公共文件
-* DLL使用DDLPlugin进行分包，使用DLLPluginRefrencePlugin对manifest.json进行引用，让一些基本不会改动的代码打成静态资源，避免反复编译浪费时间
+    * DLL使用DDLPlugin将第三方库完全分开，只打包代码本身
+        * 使用DLLPluginRefrencePlugin对manifest.json进行引用
+        * 让一些基本不会改动的代码打成静态资源，避免反复编译浪费时间
 * 充分利用二次缓存
     * babel-loader开启二次缓存
     * 使用cache-loader
+    * HardSourceWebpackPlugin，第二次构建节省80%以上时间
 * Tree shaking
     * 通过package.json，改变sideEffects来标明是否有副作用，项目中未使用到的代码将会移除
-    * 必须使用es6语法，import export
+    * 使用es6语法，import export
     * 引入能删除未使用代码的工具，UglifyJsPlugin
 * 只返回需要的polyfill
     * polyfill-server,只在需要polyfill的时候使用polyfill
+
+> 13.代码分割
+
+* 入口：使用entry配置手动分离代码
+    * 只要在entry配置入口即可
+* 动态导入：通过模块的内联函数来分离代码
+    * 在代码中自动将使用 `import()` 加载的模块分离成独立的包
+* 防止重复：使用splitChunks去重和分离chunk
+    * splitChunks可选类型：`initial`、`async`、`all`
+        * initial: 两个文件都动态引入、静态引入的文件将分离出来，
+        * async：只会提取出动态引入的公共文件
+        * all：所有超过一定大小的都会抽成公共的
+    * 可以通过设置最小值，来进行代码分离
+
+
+> 14.babel
+
+* babel提供了将代码抽象成语法树、遍历语法树更改语法树、将语法树生成code
+* 将代码变成语法树：Babylon、Babylon.parse
+* 深度遍历语法树：babel-traverse、
+* 将语法树变成代码：babel-generator
+
+
+提供了：babel.transform、babel.type
+
+> 14.webpack如何实现动态导入
+
+[webpack实现动态导入](https://juejin.im/post/5d26e7d1518825290726f67a)
+
 
