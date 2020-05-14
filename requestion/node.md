@@ -145,6 +145,8 @@ if (cluster.isMaster) {
 
 > 4.Koa中间件实现
 
+[koa中间件](https://juejin.im/post/5be3a0a65188256ccc192a87)
+
 * 在创建完koa实例时，通过use函数将所有的中间件推入中间件数组中
 * 剥洋葱模型能让所有中间件依次执行，每执行完一个中间件通过next将控制权交个下一个中间件
 * 下一个中间件的next参数是compose函数关键

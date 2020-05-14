@@ -54,3 +54,24 @@ function debounce(fn,wait){
 }
 
 
+
+function throttle (fn,wait) {
+    let timer;
+    return function(){
+        if(!timer) {
+            timer = setTimeout(()=>{
+                timer = null;
+                fn.apply(this,arguments);
+            },wait)
+        }
+    }
+}
+
+var log = function () {
+    console.log('woshishui');
+}
+var nFn = throttle(log, 2000)
+
+setInterval(() => {
+    nFn();
+}, 200);

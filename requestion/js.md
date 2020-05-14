@@ -53,7 +53,7 @@ function _new(){
     if((typeof(result)==='object' || typeof(result)==='function') && result !== null) {
         return result;
     }
-    return result;
+    return target;
 }
 ```
 
@@ -69,6 +69,7 @@ function _new(){
 > 9.深拷贝
 
 * 主要是普通值引用和对象类型的引用关系
+[解决循环引用](https://www.jianshu.com/p/b4960aaec20b)
 
 ```javascript
 function deepCopy(val) {
@@ -276,6 +277,7 @@ Function.prototype._bind = function(){
 
 * [原型和原型链](https://juejin.im/post/5c72a1766fb9a049ea3993e6) 
 * [js原型重新赋值对象变化](http://www.mamicode.com/info-detail-266268.html)
+* [instanceof原理](https://juejin.im/post/5b0b9b9051882515773ae714#heading-1)
 * 所有构造函数都是Function的实例，所有原型对象都是Object的实例除了Object.prototype。
 
 * 实现继承：
