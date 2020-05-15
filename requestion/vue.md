@@ -164,10 +164,39 @@
 > 14.vue和react选型
 
 [vue、react对比](https://juejin.im/post/5e153e096fb9a048297390c1)
+[详细对比 ](https://juejin.im/post/5c0a92f2e51d455b3d3dc181)
 
 * 核心思想：
     * vue：拥抱js+css+html的形式，将结构、表现、行为相分离的形式。提倡编写template，vue通过Object.definedProperty对数据更细致的监听，vue更加直观，对新手更友好
     * react：拥抱函数式编程思想，all in js。将html、css、js全部融入js中，写页面就像是在写js。setState、props值更新后，render函数会重渲染，可以通过shoudUpdateMounted、pureCompound减少不必要的渲染，没有vue省事，生态比vue更好
+    * 为什么React不细致监听数据变化：
+        * Vue强调的是数据可变，会对data进行get和set
+        * React强调数据不可变，通过对数据引用的方式进行比较，手动触发视图更新，否则会造成大量的vnode重渲染
+* 渲染：
+    * react：
+        * react如果组件的某个状态发生变化，那么react会把此组件和其子组件全部重新渲染一遍
+        * 不过重新渲染不代表，抛弃上一次的渲染结果，react还是通过diff算法，path到最终dom上
+        * 不过组件树过大，会造成不必要的性能浪费，diff算法会有一部分的性能开销
+        * react组件通过shouldComponentUpdate来判断组件是否需要执行后续的diff、path、update
+        * 一般使用pureComponent来做这一层判断，pureComponent和shouldComponent只是浅比较，如果是对象引用没发生变化则认为没发生变化
+        * 触发更新：
+            * react进行的是浅比较，直接修改对象上的属性，再通过setState进行更新
+    * vue:
+        * 通过Object.definedProperty，进行了依赖的收集，不会像react一样整棵树去比较
+        * 会根据收集的依赖更细致化的去更新状态有变化的组件
+        * 基于Object.definedPerproty这种虽然会让代码变得更加简洁，但是当数据过于庞大时，对data进行递归遍历可能花费的时间较长，
+* 场景对比：
+    * vue适合于小的应用
+        * vue的设计在大的应用上逻辑复用组件复用是不如react的
+        * vue的编写更加友好，通过指令、等方式可以让代码逻辑更加简洁
+    * react对于
+        * 对于组件逻辑复用比vue更好，适合大型应用
+        * 针对性对数据进行优化，性能可以做的更好
+        * 社区提供的方案更多，生态更好
+
+* 逻辑复用：
+    * React函数组件对，HOC使用比较友好
+    * Vue通过minxins、directives指令实现逻辑复用，vue也支持高阶组件类似keep-alive
 * 组件形式：
     * vue通过xx.vue文件形式，组成template+script+css，使用模板语法
     * react通过js文件来表示组件，由函数或者class来组成
@@ -184,6 +213,7 @@
     * react通过className指定css的class，传递字符串变量不能传递数组、对象
 * 生命周期：
     * vue：beforeCreated、created、beforeMounted、mounted、beforeUpdate、update、actived、deactived、beforeDestroy、destroy
+
 
 * 对比：
     * 组件化：
@@ -352,3 +382,9 @@
 * 高阶组件时什么：
     * 一个函数接收一个组件，将组件包装后返回
     * 在vue中，组件时一个对象，函数接收一个对象，返回一个新的对象
+
+> 21.directives指令
+
+* vue可以通过directives复用一些公关逻辑
+* 生命周期：
+    * bind、inserted、update、componentUpdate、unbind

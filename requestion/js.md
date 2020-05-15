@@ -211,7 +211,7 @@ Function.prototype._bind = function(){
 * 两者存在的差异
     * commonJS输出的是值的拷贝，es6模块输出的是值得引用
     * commonJS是运行时输出，在导入模块后。会执行导入脚本内容
-    * es6模块不是对象，它对外接口只是一个静态定义，在代码静态解析阶段就会生成
+    * es6模块不是对象，它对外接口只是一个静态定义，在代码静态解析阶段就会生成，不能放在块级作用域
     * es6的运行机制与commonJS不同，JS引擎对脚本静态分析时
     * 遇到模块加载命令`import`就会生成一个只读引用，在脚本在真正执行时，再根据这个只读引用到被加载的模块取值
 
@@ -287,3 +287,19 @@ Function.prototype._bind = function(){
 * 常用方法：
     * exec,返回匹配的数组
     * test，匹配成功返回boolean
+
+> 21.instanceOf
+
+* 实现instanceOf
+
+```js
+function instanceOf(left,right){
+    while(left){
+        if (left.__proto__ === right.prototype) return true;
+        left = left.__proto__;
+    }
+    return false;
+}
+```
+
+
