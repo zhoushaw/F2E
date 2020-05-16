@@ -303,3 +303,16 @@ function instanceOf(left,right){
 ```
 
 
+> 22.Proxy和Object.defineProperty
+
+
+* Proxy直接对对象进行代理
+    * 可以直接拦截到对象的，get、set、has、apply多达13种方式
+    * 针对数组拦截，调用push、splice会触发Proxy代理对象的set
+    * 可以配合Reflect使用，对对象操作规范化
+* Object.defineProperty
+    * 只能拦截对象的指定属性，无法拦截操作方法
+    * 对数组拦截，只能更改拦截数组的原型，或者将数组的访问方法代理到另一个更改的原型上
+
+
+

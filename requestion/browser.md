@@ -285,3 +285,33 @@ var a = document.getElementById("testA");
 * 插件线程
 * 定时器触发线程
 * 异步http请求线程
+
+> 11.浏览器渲染html
+
+[渲染过程](https://juejin.im/post/59d489156fb9a00a571d6509)
+
+* 构建DOM（文档对象模型）
+    * 将html构建成多个tokens
+    * 将tokens解析成对象的形式，描述属性、信息
+    * 将object组成一棵树的结构,
+* 构建CSSOM（样式对象模型）
+    * 构建与DOM构建一致
+* 构建Render Tree
+    * 结合DOM和CSSOM构建Render树
+* Layout
+    * 计算每个元素相对于viewPort的位置
+* Paint
+    * 将render Tree转成像素，显示在屏幕上
+
+* 渲染阻塞的优化方案：
+浏览器在遇到css、script时会中断渲染，加载并执行script
+
+* css
+    * 通过meida，在符合条件情况加载，横屏，或者特定尺寸
+* script
+    * html在解析过程中遇到`<script>`会将控制权交给JavaScript引擎会阻塞渲染，直到执行结束，从中断的地方继续渲染
+    * 通过async、defer来延后执行
+
+
+
+

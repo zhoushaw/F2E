@@ -227,12 +227,106 @@
 // console.log(a, b)
 
 
-function* helloWorldGenerator() {
-    yield function(){return 'hello'};
-    yield 'world';
-    return 'ending';
-}
+// function* helloWorldGenerator() {
+//     yield function(){return 'hello'};
+//     yield 'world';
+//     return 'ending';
+// }
 
-var hw = helloWorldGenerator();
+// var hw = helloWorldGenerator();
 
-console.log(hw.next(), hw.next())
+// console.log(hw.next(), hw.next())
+
+
+// function add (n){
+//     var val = n;
+//     var bound = function(nVal){
+//         val = val + nVal;
+//         return bound;
+//     };
+
+//     var b = new Proxy(bound,{
+//         get(target, propKey, receiver){
+//             Reflect.get(target, propKey, receiver)
+//         }
+//     })
+
+//     return b;
+// }
+
+// add(1)(2)(3).val;
+
+// function add (n){
+//     let val = n;
+//     let bound = function(nVal){
+//         val = val+nVal;
+//         return proxyBound(bound);
+//     }
+
+//     function proxyBound(fn) {
+//         let p = new Proxy(fn, {
+//             get(target, key, receiver) {
+//                 if (key === 'val') {
+//                     return val;
+//                 }
+//                 return Reflect.get(target, key, receiver);
+//             }
+//         })
+//         return p;
+//     }
+//     return proxyBound(bound);
+// }
+
+// function add (n){
+//     let val = n;
+//     let bound = function(nVal){
+//         val += nVal;
+//         return bound;
+//     }
+//     Object.defineProperty(bound,'val',{
+//         get () {
+//             return val;
+//         }
+//     })
+//     return bound;
+// }
+
+// console.log(add(1)(2)(3).val);
+// console.log(add(1)(2).val);
+
+// var arr = ['1','1','1','2','3','3','4','5','6'];
+
+
+// function uniqueArr(arr){
+//     let slowerIndex = 0;
+//     let quickIndex = 1;
+//     while(quickIndex<arr.length){
+//         if(arr[slowerIndex]===arr[quickIndex]){
+//             quickIndex++;
+//         } else {
+//             slowerIndex++;
+//             arr[slowerIndex] = arr[quickIndex];
+//             quickIndex++;
+//         }
+//     }
+//     return arr.splice(0,slowerIndex+1);
+// }
+
+// console.log(uniqueArr(arr));
+
+
+var removeElement = function (nums, val) {
+    let index = 0;
+    let len = nums.length - 1;
+    while (index <= len) {
+        console.log(nums, nums[index],val);
+        if (nums[index] === val) {
+            nums.splice(index, 1);
+            len--;
+        } else {
+            index++;
+        }
+    }
+    return nums;
+};
+console.log(removeElement([3, 2, 2, 3], 3))
