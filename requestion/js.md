@@ -70,6 +70,7 @@ function _new(){
 
 * 主要是普通值引用和对象类型的引用关系
 [解决循环引用](https://www.jianshu.com/p/b4960aaec20b)
+[强引用，弱引用](https://juejin.im/post/5dbebbfa51882524c507fddb#heading-58)
 
 ```javascript
 function deepCopy(val) {
@@ -107,23 +108,33 @@ function deepCopy(val) {
 * 节流函数：
 
 ```javascript
+// function throttle(fn,wait){
+//     var timer,pre;
+//     return function(){
+//         var now = +new Date();
+//         var args = arguments;
+//         if(!pre) pre = now;
+//         var time = wait - (now-pre);
+//         if(timer) clearTimeout(timer);
+//         if(time<=0 || time>wait) {
+//             fn.apply(this,args);
+//             pre = now;
+//         } else {
+//             timer = setTimeout(()=>{
+//                 fn.apply(this,args);
+//                 pre = now;
+//             },time)
+//         }
+//     }
+// }
 function throttle(fn,wait){
-    var timer,pre;
-    return function(){
-        var now = +new Date();
-        var args = arguments;
-        if(!pre) pre = now;
-        var time = wait - (now-pre);
-        if(timer) clearTimeout(timer);
-        if(time<=0 || time>wait) {
+    let timer;
+    return function(...args){
+        if(timer) return;
+        timer = setTimeout(()=>{
+            timer = null;
             fn.apply(this,args);
-            pre = now;
-        } else {
-            timer = setTimeout(()=>{
-                fn.apply(this,args);
-                pre = now;
-            },time)
-        }
+        },wait)
     }
 }
 ```

@@ -313,5 +313,13 @@ var a = document.getElementById("testA");
     * 通过async、defer来延后执行
 
 
+> 12.性能监控
 
+[性能监控](https://juejin.im/post/5b7a50c0e51d4538af60d995)
+[性能优化](https://juejin.im/post/5b6fa8c86fb9a0099910ac91)
 
+* 获取页面加载数据
+
+```js
+const navTimes = performance.getEntriesByType('navigation')
+```

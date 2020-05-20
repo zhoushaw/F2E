@@ -315,18 +315,41 @@
 // console.log(uniqueArr(arr));
 
 
-var removeElement = function (nums, val) {
-    let index = 0;
-    let len = nums.length - 1;
-    while (index <= len) {
-        console.log(nums, nums[index],val);
-        if (nums[index] === val) {
-            nums.splice(index, 1);
-            len--;
-        } else {
-            index++;
-        }
-    }
-    return nums;
-};
-console.log(removeElement([3, 2, 2, 3], 3))
+// var removeElement = function (nums, val) {
+//     let index = 0;
+//     let len = nums.length - 1;
+//     while (index <= len) {
+//         console.log(nums, nums[index],val);
+//         if (nums[index] === val) {
+//             nums.splice(index, 1);
+//             len--;
+//         } else {
+//             index++;
+//         }
+//     }
+//     return nums;
+// };
+// console.log(removeElement([3, 2, 2, 3], 3))
+
+
+
+// function a() {
+//     setTimeout(()=>{
+//         console.log('timer');
+//         a();
+//     });
+//     process.nextTick(() => {
+//         console.log('nextTick');
+//         a();
+//     });
+// }
+
+// a();
+
+
+setTimeout(() => {
+    console.log('timer');
+});
+process.nextTick(() => {
+    console.log('nextTick');
+});

@@ -388,3 +388,11 @@
 * vue可以通过directives复用一些公关逻辑
 * 生命周期：
     * bind、inserted、update、componentUpdate、unbind
+
+> 22.vue-router生命周期
+
+* beforeRouterEnter：路由进入该组件调用
+* beforeRouterLeave：离开时调用
+* beforeRouterUpdate：路由更新是调用，同一个组件多个页面使用
+
+

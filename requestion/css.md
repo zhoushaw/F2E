@@ -11,8 +11,8 @@
 * 形成bfc：
     * 根元素
     * position为fixed、absolute
-    * float部位none
-    * overflow部位visible
+    * float不为none
+    * overflow不为visible
     * display为inline-block、flex、inlin-flex、table-cell
 
 
@@ -44,8 +44,8 @@
 * important,10000
 * 行内样式,1000
 * id，#选择器,100
-* class，10
-* 标签选择器、伪类选择器
+* class，伪类、属性选择器，10
+* 标签选择器、伪元素选择器，
 * 通配符选择器
 
 
