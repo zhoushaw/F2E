@@ -323,3 +323,21 @@ var a = document.getElementById("testA");
 ```js
 const navTimes = performance.getEntriesByType('navigation')
 ```
+
+
+> 13.垃圾回收
+
+[GC垃圾回收](https://juejin.im/post/5a6b3fcaf265da3e2c385375)
+[常见内存泄漏](https://juejin.im/post/5b684f30f265da0f9f4e87cf)
+
+* 作用：
+    * 找到内存空间的垃圾
+    * 回收这一部分内存，让程序能够再次使用这一部分空间
+* 引用计数法
+    * 对引用的对象标记+1，对于循环引用将会导致GC无法回收，应该被回收的内存
+    * 对象置空后-1，引用为0时会即可回收
+* 标记清除
+* 内存泄漏：
+    * 由于某种原因程序未释放或无法释放造成系统内存泄漏
+    * 导致运行减速或系统崩溃
+
