@@ -196,3 +196,33 @@ if (cluster.isMaster) {
 * 将目标获取的数据写入可写流中（将可读流写入可写流中）
 * 将所有的目标数据放到可写流上
 * `res.pipe(writeStream)`
+
+
+> 8.commonJS原理
+
+[深入commonJS原理](https://juejin.im/post/5b67c342e51d45172832123d)
+
+* commonJS的实现：
+    * commonJS会去找到绝对路径文件
+    * 如果没有后缀名会去找`js、json、node`后缀文件
+    * 模块加载后会有缓存，把文件名作为key，module作为val
+    * node实现模块化实际上就是一个闭包，并自执行这个闭包
+    * 模块加载时同步操作
+    * 不同模块下相同变量不会冲突
+
+* 每个模块相当于一个匿名函数
+    * 函数接收require、module、exports参数
+    * 默认返回module.exports参数
+
+```js
+(function(exports,module,require,__dirname,__filename){
+    module.export = exports = this = {};
+    // 模块代码
+    return module.exports;
+})
+```
+
+* require时，如果是js文件
+    * 获取模块内容，给模块的头部和尾部拼接内容，使其变成一个`()`包裹的匿名函数
+    * 匿名函数接收，module、exports、require、__dirname、__dirfilename
+    * 通过v8引擎提供的`vm`模块执行模块代码，执行包装后的匿名函数，拿到module.exports

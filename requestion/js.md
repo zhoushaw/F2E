@@ -326,4 +326,38 @@ function instanceOf(left,right){
     * 对数组拦截，只能更改拦截数组的原型，或者将数组的访问方法代理到另一个更改的原型上
 
 
+> 23.伪数组与真实数组
 
+* 真实数组是array结构
+* 伪数组是一个由一个对象构成的
+    * 伪数组通过0、1、2这样的key索引来存储值
+    * 它有length属性
+    * 并且它有Symbol.interator属性，来设置迭代返回值
+
+
+```js
+const obj = {
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    [Symbol.iterator] () {
+        var current = this;
+        let index = 0;
+        return {
+            next: function () {
+                if(typeof current[index]!=='undefined'){
+                    return {
+                        value: current[index++],
+                        done: false
+                    }
+                } else {
+                    // index = 0;
+                    return {
+                        done: true
+                    }
+                }
+            }
+        };
+    }
+};
+```

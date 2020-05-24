@@ -114,3 +114,17 @@
 * 减少使用import
 
 * requestAnimationFrame，在下一次重绘前调用指定函数来重绘
+
+> 12.实现动画的方式
+
+* animation
+* transition
+* animationRequestFrame
+* SVG
+    * [svg入门指南](https://juejin.im/post/5acd7c316fb9a028c813348d)
+* canvas
+* gif
+
+
+
+

@@ -4,25 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        let i = 10
-        let req = () => {
-        i--
-        requestAnimationFrame(() => {
-            document.body.style.background = "red"
-            requestAnimationFrame(() => {
-                document.body.style.background = "blue"
-                if (i > 0) {
-                    req()
-                }
-                })
-            })
+    <style>
+        .father{
+            width: 50%;
         }
-
-        req()
-    </script>
+        .child{
+            width: 20%;
+            /* height: auto; */
+            padding-bottom: 100%;
+            background: red;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="father">
+        <div class="child"></div>
+    </div>
 </body>
 </html>
