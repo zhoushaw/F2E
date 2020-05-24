@@ -161,3 +161,38 @@ if (cluster.isMaster) {
 * 每一次都是将自己的执行函数封装成next当做上一个中间件的next参数
 * 这样当循环到第一个中间件的时候，只需要执行一次next()
 * 就能链式的递归调用所有中间件，这个就是koa剥洋葱的核心代码机制
+
+
+> 5.node常用模块
+
+* fs
+* child_process,通过子进程执行命令行
+    * exec、execFile
+    * spawn,可以通过detached，指定父进程结束后，子进程存活
+    * fork
+* cluster
+    * 集群，基于child_process，fork实现
+    * 能够直接使用负载均衡
+* http
+
+> 6.大文件下载、上传、大文件读取
+
+[node读写大文件](https://www.cnblogs.com/fengmk2/archive/2011/08/16/2140460.html)
+
+* api：
+    * readLine
+    * createReadStream
+    * createWriteStream
+* 大文件读取：
+    * readLine.creatInterface，input设置createReadStream
+    * rl实例，监听line
+
+
+
+> 7.pipe
+
+[node-pipe的实现](https://cnodejs.org/topic/56ba030271204e03637a3870)
+
+* 将目标获取的数据写入可写流中（将可读流写入可写流中）
+* 将所有的目标数据放到可写流上
+* `res.pipe(writeStream)`

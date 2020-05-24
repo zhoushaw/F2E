@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            let grandFather = document.querySelector('.grand-father');
+            grandFather.addEventListener('click',(event)=>{
+                console.log('father:',event,event.target);
+            },false)
+            let child = document.querySelector('.child');
+            child.addEventListener('click',(event)=>{
+                event.preventDefault();
+                console.log('child:',event,event.target);
+                // event.stopPropagation();
+            },false)
+        }
+    </script>
+    <style>
+        .grand-father {
+            height: 200px;
+            width: 200px;
+            background: red;
+        }
+        .father {
+            height: 100px;
+            width: 100px;
+            background: blue;
+        }
+        .child {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="grand-father">
+        <div class="father">
+            <a class="child" href="www.baidu.com"></a>
+        </div>
+    </div>
+</body>
+</html>

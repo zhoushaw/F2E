@@ -56,6 +56,7 @@
 [react hook](https://www.jianshu.com/p/aafccf6e9ad6)
 [hook 原理](https://github.com/brickspert/blog/issues/26)
 [hook详解](https://juejin.im/post/5e53d9116fb9a07c9070da44)
+[精度react hooks](https://segmentfault.com/a/1190000018639033#item-2-13)
 
 * 他可以让你在不编写class的情况下使用state以及其他React特性
 * Hook不能在class组件中使用，不用class也能使用React

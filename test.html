@@ -4,49 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script>
-        window.onload = function(){
-            function find4Img(){
-                let imgs = document.querySelectorAll('#content img');
-                function  find4Max (img) {
-                    // let flag = 0;
-                    // while(img){
-                    //     img = 
-                    // }
+    <script>
+        let i = 10
+        let req = () => {
+        i--
+        requestAnimationFrame(() => {
+            document.body.style.background = "red"
+            requestAnimationFrame(() => {
+                document.body.style.background = "blue"
+                if (i > 0) {
+                    req()
                 }
-                
-            }
-            find4Img();
+                })
+            })
         }
-    </script> -->
-    <style>
-        .father{
-            width: 200px;
 
-        }
-        #content{
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 100%;
-            background: red;
-        }
-    </style>
+        req()
+    </script>
 </head>
 <body>
-    <div class="father">
-        <div id="content"></div>
-    </div>
-    <!-- <div id="content">
-        <div>
-            <div>
-                <img src="" alt="">
-            </div>
-        </div>
-    </div> -->
-    <!-- <div>
-        <img src="" alt="">
-    </div> -->
-    <!-- <div onClick="alert(name)">提交</div> -->
-        <!-- <div class="content">快手</div> -->
+    
 </body>
 </html>

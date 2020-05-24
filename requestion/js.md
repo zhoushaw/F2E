@@ -17,7 +17,7 @@ string、number、boolean、undefined、symbol、object、function
 
 > 4.类型判断准确（toString）
 
-* Object.prototype.toString.call(val);
+* Object.prototype.toString.call(val)
 * [object Type]
 
 > 5.说一说你对JS执行上下文栈和作用域链的理解

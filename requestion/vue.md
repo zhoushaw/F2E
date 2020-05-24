@@ -149,7 +149,7 @@
     * 优点：不需要部署node server每次动态解析填充数据，实现简单、
     * 缺点：个性化内容无法支持、页面较多build较慢
 * 服务端渲染：
-    * 
+    * [vue ssr](https://segmentfault.com/a/1190000016637877)
     * 通过vue-server-render对vue实例对象进行解析成最终html
     
 > 14.proxy和Object.definedProperty
@@ -395,4 +395,9 @@
 * beforeRouterLeave：离开时调用
 * beforeRouterUpdate：路由更新是调用，同一个组件多个页面使用
 
+
+> 23.slot
+
+* 获取slot内容，`this.$slots`，获取插槽内容
+* 在内部`:name="val"`传入值给上层模板，通过`slot-scoped`获取值
 

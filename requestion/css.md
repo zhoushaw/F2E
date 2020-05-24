@@ -1,4 +1,4 @@
-
+[灵活使用css开发](https://juejin.im/post/5d4d0ec651882549594e7293#heading-0)
 
 > 1.BFC是什么有什么作用
 
@@ -97,3 +97,20 @@
 > 10.input遮挡
 
 [input遮挡](https://juejin.im/post/5b0401b2f265da0b71569ca0)
+
+
+> 11.css性能优化
+
+[60fps性能优化](https://www.zcfy.cc/article/smooth-as-butter-achieving-60-fps-animations-with-css3-1054.html)
+[css性能优化](https://juejin.im/post/5b6133a351882519d346853f)
+
+* 部分主要内容内联
+* 通过will-change: transform，或者transform：translateZ、translate3d开启GPU渲染
+* 将复杂动画脱离文档里，或同一个dom节点，减少对兄弟节点，父节点影响
+* 选择器，减少使用通配符，或者选择器过程，在合并成render tree时会造成查找性能问题
+* media，在适当时期加载对应的css
+* 使用transfrom
+* preload降级不必要css加载顺序
+* 减少使用import
+
+* requestAnimationFrame，在下一次重绘前调用指定函数来重绘

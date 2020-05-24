@@ -57,4 +57,60 @@
     * 服务端入口返回new后的vue实例
     * 客户端需要将实例挂载到el上
 * 后端获取数据：
-    * 
+
+
+
+> 12.性能监控
+
+[性能监控](https://juejin.im/post/5b7a50c0e51d4538af60d995)
+[性能优化](https://juejin.im/post/5b6fa8c86fb9a0099910ac91)
+
+* 获取页面加载数据
+
+```js
+var t = performance.getEntriesByType('resource')[0]
+console.log(t);
+console.log('DNS查询耗时 ：' + (t.domainLookupEnd - t.domainLookupStart).toFixed(0))
+console.log('TCP链接耗时 ：' + (t.connectEnd - t.connectStart).toFixed(0))
+console.log('request请求耗时 ：' + (t.responseEnd - t.responseStart).toFixed(0))
+console.log('解析dom树耗时 ：' + (t.domComplete - t.domInteractive).toFixed(0))
+console.log('白屏时间 ：' + (t.responseStart - t.navigationStart).toFixed(0))
+console.log('domready时间 ：' + (t.domContentLoadedEventEnd - t.navigationStart).toFixed(0))
+console.log('onload时间 ：' + (t.loadEventEnd - t.navigationStart).toFixed(0))
+```
+
+
+> 13.白屏时间和首屏时间
+
+[计算白屏、首屏时间](https://juejin.im/post/5df4294d518825128306cd5c)
+
+* 白屏事件，在head开头记录时间戳，结尾记录时间戳。
+* 用于计算首个内容加载的时间
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>白屏时间</title>
+    <script>
+        // 开始时间
+        window.pageStartTime = Date.now();
+    </script>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="">
+    <script>
+        // 白屏结束时间
+        window.firstPaint = Date.now()
+    </script>
+</head>
+<body>
+    <div>123</div>
+</body>
+</html>
+
+ <!-- 白屏时间 = firstPaint - pageStartTime -->
+```
+
+* 首屏时间 = 白屏时间 + 首屏渲染时间
+

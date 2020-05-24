@@ -1,5 +1,5 @@
 
-> 快手一面
+> 快手1面
 
 * 实现一个div，高度屏幕一半，内容垂直水平居中
 * 浏览器渲染步骤过程，html如何渲染出来的，具体步骤
@@ -19,60 +19,38 @@
     * react
         * hook使用React.memo，useMemo、useCallback减少重复渲染
         * class组件使用pureComponent、shouldUpdateComponent减少渲染
+* 你怎么实现一个loader，把px转成rem
+* 有效括号算法题
+* 函数柯里化+Object.defineProperty
 
 
-
-> 快手二面
+> 快手2面
 
 * 你简单介绍一下你做过的项目
 * 有哪些做的比较好的地方
-* es6模块，commonjs
-
-```js
-vue data () {}
-
-a 
-export const a  ={}
-b
-import {a } from 'a'
-a.x = 1;
-
-c.
-import {a } from 'a'
-a.x 1 or undefined
-
-es6 commonjs
-tree-shaking
-```
-
-* vue3
-    proxy
-    diff优化
-    composite 
-
-* vue.$nextTick，setTimeout无效调用
-
-```js
-// vue.$nextTick
-
-// promise 
-// setTimeout
-
-function a () {
-    setTimeout(a);
-    process.nextTick(a);
-}
-```
-
+* es6模块，commonjs。改变内容实际运行结果
+* tree-shaking怎么实现的
+* vue3有哪些新特性
+* vue.$nextTick，setTimeout循环调用怎么结果
 * 你怎么带新人
-* 三个有序数组的合并
+* 三个有序数组的合并，最优解
+* 实现一个类，限制接口并发
 
-[3,2,1]
-[5,2,1,0]
-[10,9,8,7]
 
-合并成一个有序数组
-降序
+> 快手3面
+
+* puppeteer怎么做优化，通过主进程创建浏览器对象，子进程获取浏览器
+* 子进程创建子页面，打开页面。
+* script、async、defer
+* 说说你觉得最有挑战的一个项目
+* 你觉得哪个项目技术挑战最大
+* 实现一个发布订阅模式
+* 打点系统怎么设计的
+* 为什么自己设计一套cli，不使用vue-cli
+* http2.0什么时候性能比1.1差
+* 浏览器详细渲染过程，渲染过程中有哪些可以优化的
+
+
 
 ```js
 
@@ -136,6 +114,8 @@ class TaskManager {
 }
 ```
 
+
+
 <!-- 
 
 Object.definedPropety(fn,'val',{
@@ -190,3 +170,5 @@ let add = (()=>{
 })()
 
 -->
+
+
