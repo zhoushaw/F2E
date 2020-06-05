@@ -77,16 +77,15 @@ let limitPromise = (promises,limit)=>{
     return new Promise((resolve,reject)=>{
         let total = promises.length;
         let result = [];
-        let done = 0;
         function run (p){
             p().then((res)=>{
-                if(total>done&&result.length<limit) {
-                    done++;
+                result.push(res);
+                if (total > result.length) {
                     run(promises.shift());
-                } else if(done===total) {
+                } else {
                     resolve(result);
                 }
-            }).then(callback)
+            })
         }
         promises.slice(0,limit).forEach((p)=>{
             run(p);

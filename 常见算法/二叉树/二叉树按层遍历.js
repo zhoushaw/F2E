@@ -24,7 +24,7 @@ var obj = {
     }
 }
 
-function print(node){
-    var arr = [];
-    while()
-}
+// function print(node){
+//     var arr = [];
+//     while()
+// }

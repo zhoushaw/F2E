@@ -38,6 +38,7 @@
     * 前端针对html内容，也要针对性的过滤
     * 设置cookie，httpOnly不让js获取cookie
     * 通过设置CSP，让不符合接口请求和站外内容无法加载
+        * [csp配置](https://blog.csdn.net/qq_25623257/article/details/90473859)
         * `<meta http-equiv="Content-Security-Policy" content="default-src https://cdn.example.net; child-src 'none'; object-src 'none'">`
         * [CSP配置](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)
         * http，response Header，设置CSP

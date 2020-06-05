@@ -52,7 +52,7 @@
 > 4.https与http
 
 [https](https://juejin.im/post/59e4c02151882578d02f4aca#heading-5)
-
+[https详细交互过程](https://www.jianshu.com/p/42e1c073c142)
 ![](https://user-gold-cdn.xitu.io/2018/5/21/1638197d96d391ca?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 
@@ -229,13 +229,23 @@ SSL协议是位于http之下，TCP之上的协议
     * 若一段时间内服务端没返回pong，客户端断开连接，重连
 
 
-> 12.Preload
+> 12.Preload、prefetch
 
-* 提前加载资源，等到需要执行才执行
-* 不会影响onload事件，
-* 通过link标签，增加ref="preload"，通过http头增加rel="preload"
-* 提前加载路由文件，切换时才执行
+* link-type
+    * rel=`stylesheet`
 
+* Preload
+    * [详解preload](https://www.jianshu.com/p/24ffa6d45087)
+    * 提前加载资源，等到需要执行才执行
+    * 不会影响onload事件，
+    * 通过link标签，增加ref="preload"，通过http头增加rel="preload"
+    * 提前加载路由文件，切换时才执行
+    * `<link rel="preload" href="./test.css" as="style" onload="this.rel='stylesheet'">`
+    * 通过更改ref属性使其生效
+    * as：
+        * "script"、"style"、"image"、"media"、"document"
+* prefetch
+    * 资源优先级比较低
 
 > 13.cookie和session
 
@@ -277,3 +287,5 @@ SSL协议是位于http之下，TCP之上的协议
 * 先去找DNS缓存->缓存找不到就去找本地域名服务器->根域名服务器->根域名->com域名服务器，一层层查找
 * 这样递归查找之后，找到了，给我们的web浏览器
 
+
+先从缓存（浏览器缓存，操作系统缓存、路由器缓存、以及isp服务商缓存），找不到的话就去根域名服务器->顶级域名服务器->二级域名依次的去查询么

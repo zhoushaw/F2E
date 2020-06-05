@@ -23,20 +23,12 @@
 // }
 
 
-Function.prototype._bind = function(){
-    let [_this,...args] = arguments;
-    let construcotr = this;
-    var F = function(){}
-    var bound = function(...nArgs){
-        let context = _this;
-        if (this instanceof bound) {
-            F.prototype = construcotr.prototype;
-            context = new F();
-        }
-        let result = construcotr.apply(context,args.concat(nArgs));
-        return _this==context ? result: context;
+
+Function.prototype._bind = function(_this,...args){
+    let constructor = this;
+    let bound = function(...nArgs){
+        return constructor.apply(this instanceof Bound ? this : _this,args.concat(nArgs));
     }
+    bound.prototype = Object.create(constructor.prototype);
     return bound;
 }
-
-

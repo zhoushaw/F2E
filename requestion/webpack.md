@@ -158,3 +158,13 @@
 [webpack实现动态导入](https://juejin.im/post/5d26e7d1518825290726f67a)
 
 
+webpack是一个打包工具，他的宗旨是一切静态资源皆可打包。
+
+[grunt](https://link.zhihu.com/?target=https%3A//www.gruntjs.net/)和[gulp](https://link.zhihu.com/?target=https%3A//www.gulpjs.com.cn/)是基于任务和流（Task、Stream）的。类似jQuery，找到一个（或一类）文件，对其做一系列链式操作，更新流上的数据， 整条链式操作构成了一个任务，多个任务就构成了整个web的构建流程。
+
+webpack是基于入口的。webpack会自动地递归解析入口所需要加载的所有资源文件，然后用不同的Loader来处理不同的文件，用Plugin来扩展webpack功能。
+
+
+- Hash: 所有文件同一个hash,一个变了全部都会变
+- chunkHash: 文件hash不同，修改文件只会变更对应文件的hash。
+- contentHash: 页面引入css文件，修改css。js hash会变，但是修改js、css hash不会变

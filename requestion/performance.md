@@ -102,6 +102,14 @@ console.log('onload时间 ：' + (t.loadEventEnd - t.navigationStart).toFixed(0)
     <script>
         // 白屏结束时间
         window.firstPaint = Date.now()
+        console.log('白屏时间',window.firstPaint-window.pageStartTime)
+
+        // 首屏时间
+        window.addEventListener('DOMContentLoaded',function(){
+            // 首屏结束时间
+            window.firstScreen = Date.now()
+            console.log('白屏时间',window.firstScreen-window.pageStartTime)
+        })
     </script>
 </head>
 <body>

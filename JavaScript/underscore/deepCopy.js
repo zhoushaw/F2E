@@ -34,14 +34,10 @@ function deepCopy(obj) {
             if (isNormalType(obj[i])) {
                 target[i] = obj[i];
             } else if (nType === 'function') {
-                target[i] = eval(obj[i]);
+                target[i] = eval(obj[i].toString());
             } else if (nType === 'regexp') {
                 var reg = obj[i].valueOf();
-                var flag = '';
-                flag += obj[i].global ? 'g' : '';
-                flag += obj[i].ignoreCase ? 'i' : '';
-                flag += obj[i].multiline ? 'm' : '';
-                target[i] = new RegExp(reg, flag);
+                target[i] = new RegExp(reg);
             } else if (nType === 'date') {
                 target[i] = new Date(obj[i].valueOf());
             } else {

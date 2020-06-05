@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <!-- <script>
+        // 开始时间
+        window.pageStartTime = Date.now();
+        // 首屏时间
+        window.addEventListener('DOMContentLoaded',function(){
+            // 首屏结束时间
+            window.firstScreen = Date.now()
+            console.log('首屏时间',window.firstScreen-window.pageStartTime)
+        })
+    </script> -->
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="">
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'"> -->
+    <!-- <link href="https://code.jquery.com/jquery-3.5.1.min.js" as="script" onload="console.log('jquery资源加载完成')"> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="./test.css" onload="console.log('资源加载完成')"> -->
+    <!-- <link rel="preload" href="./test.js" as="script" onload="this.ref='script'"> -->
+    <!-- <style>
         .father{
             width: 50%;
         }
@@ -14,11 +31,129 @@
             padding-bottom: 100%;
             background: red;
         }
+    </style> -->
+    <!-- <script defer src="./test.js" onload="console.log('defer资源')"></script> -->
+    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js" onload="console.log('defer')"></script>
+    <style>
+        .father{
+            /* box-sizing: border-box; */
+            /* height: 200px;
+            width: 100%;
+            padding: 20px;
+            margin: 30px;
+            border: 10px solid block; */
+            /* background: blue; */
+            display: flex;
+            width: 1000px;
+        }
+        .child{
+            height: 200px;
+            width: 300px;
+            flex-shrink: 20;
+            background: red;
+            /* width: 100px;
+            background: red; */
+        }
+        .child2{
+            width: 500px;
+            height: 200px;
+            background: yellow;
+            flex-shrink: 1;
+        }
+        .child3{
+            width: 600px;
+            height: 200px;
+            flex-shrink: 1;
+            background: black;
+
+        }
     </style>
+    <script>
+        // console.log('页面过来了')
+        // window.onload = function(){
+        //     // console.log('页面onload')
+        //     let father = document.querySelector('.father');
+        //     let child = document.querySelector('.child');
+        //     father.addEventListener('click',function(event){
+        //         console.log(event.target,event.currentTarget);
+        //     },false);
+        //     // child.addEventListener('click',function(event){
+
+        //     // },false);
+        // }
+        // let a = {
+        //     b: 3
+        // }
+        // function fn(obj){
+        //     obj.b = 4;
+        //     return obj;
+        // }
+        // let aa = fn(a);
+        // console.log(a.b);
+        // console.log(aa.b);
+        // aa = {b:6};
+        // console.log(a.b);
+        // console.log(aa.b);
+        // let len = 6;
+        // for(var i=0;i<len;i++){
+        //     setTimeout(()=>{
+        //         console.log(i);
+        //     },1000)
+        // }
+        // console.log(i);
+
+        // function Ofo() {}
+
+        // function Bick() {
+        //     this.name = 'mybick'
+        // }
+
+        // var myBick = new Ofo()
+
+        // Ofo.prototype = new Bick()
+
+        // var youbick = new Bick()
+
+        // console.log(myBick.name)
+
+        // console.log(youbick.name);
+
+        // console.log(Ofo.prototype === youbick)
+        
+        // let b ={
+        //     name: 'zhoushaw',
+        //     say (){
+        //         console.log(this.name)
+        //     }
+
+        // }
+        // undefined
+        // (function(){
+        //     return arguments[0]();
+
+        // })(b.say)
+
+    </script>
+    <script>
+        // 白屏结束时间
+        // window.firstPaint = Date.now()
+        // console.log('白屏时间',window.firstPaint-window.pageStartTime)
+        window.onload = function(){
+            console.log('onload 啦');
+        }
+        let index = 1;
+        while(index<2000){
+            index++;
+        }
+    </script>
 </head>
 <body>
-    <div class="father">
+    <div class="father" >
         <div class="child"></div>
+        <div class="child2"></div>
+        <div class="child3"></div>
+        <!-- <div class="child2"></div> -->
+        <!-- <b style="margin: 20px;padding: 20px;border: 2px solid red;width: 200px;height: 200px;">helloworld</b> -->
     </div>
 </body>
 </html>

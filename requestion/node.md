@@ -226,3 +226,8 @@ if (cluster.isMaster) {
     * 获取模块内容，给模块的头部和尾部拼接内容，使其变成一个`()`包裹的匿名函数
     * 匿名函数接收，module、exports、require、__dirname、__dirfilename
     * 通过v8引擎提供的`vm`模块执行模块代码，执行包装后的匿名函数，拿到module.exports
+
+
+> 9.查看内存占用情况
+
+* process.memoryUsage

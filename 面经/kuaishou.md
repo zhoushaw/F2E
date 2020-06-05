@@ -152,7 +152,7 @@ add(1)(2).val => 3
 add(1)(2)(3).val => 6 
 
 
-let add = (()=>{
+let add =  function (){
     let val = 0;
     function fn(n){
         val = val+n;
@@ -163,11 +163,9 @@ let add = (()=>{
             return val;
         }
     })
-    fn.val = function(){
-        return val;
-    }
     return fn;
-})()
+}
+
 
 -->
 
