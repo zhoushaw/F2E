@@ -1,6 +1,23 @@
 
+## 目录
+
+* [函数式组件与类组件有什么不同](#函数式组件与类组件有什么不同)
+* [JSX](#JSX)
+* [React高阶组件](#React高阶组件)
+* [性能优化](#性能优化)
+* [Hook](#Hook)
+* [生命周期](#生命周期)
+* [fiber](#fiber)
+* [setState](#setState)
+* [redux](#redux)
+* [受控组件和非受控组件](#受控组件和非受控组件)
+
+
+## 内容
 
 > 1.函数式组件与类组件有什么不同
+
+<a name="函数式组件与类组件有什么不同"></a>
 
 [函数式组件与类组件有什么不同](https://overreacted.io/zh-hans/how-are-function-components-different-from-classes/)
 [babel转换](https://babeljs.io/repl)
@@ -9,6 +26,8 @@
 
 > 2.JSX
 
+<a name="JSX"></a>
+
 * jsx有什么作用
     * jsx是基于，js的扩展
     * 渲染逻辑与其他UI逻辑内在耦合，在UI需要处理绑定事件，在某些时刻状态发生变化需要通知到UI
@@ -16,6 +35,8 @@
     * jsx是React.CreateElement语法糖
 
 > 3.React高阶组件
+
+<a name="React高阶组件"></a>
 
 * React高阶组件用于复用组件逻辑的高级技巧
 * 它是基于React组合特性而形成的设计模式
@@ -28,6 +49,8 @@
 
 
 > 4.性能优化
+
+<a name="性能优化"></a>
 
 * pureCompoent、shouldCompoenntUpdated
 * React，memo，浅比较props
@@ -52,6 +75,8 @@
 
 
 > 5.Hook
+
+<a name="Hook"></a>
 
 [react hook](https://www.jianshu.com/p/aafccf6e9ad6)
 [hook 原理](https://github.com/brickspert/blog/issues/26)
@@ -87,6 +112,9 @@
     * useRef实际就是通过useState实现的，初始化current,可以当做state来使用
     
 > 6.生命周期
+
+<a name="生命周期"></a>
+
 [生命周期](https://juejin.im/post/5df648836fb9a016526eba01)
 
 * 旧版本生命周期：
@@ -128,10 +156,21 @@
 
 > 7.fiber
 
+<a name="fiber"></a>
+
 [fiber](https://juejin.im/post/5dadc6045188255a270a0f85)
+[fiber架构](https://www.jianshu.com/p/bf824722b496)
+
+* 为什么移除componentWillMounted
+    * 因为在render之前，如果发生优先级更高的任务
+    * rende可能会被打断去执行优先级更高的任务，执行完成后再回来重头开始执行渲染组件
+    * 所以render前的生命周期都有可能会被重复调用
+
 
 
 > 8.setState
+
+<a name="setState"></a>
 
 [setState事件合并](https://juejin.im/post/5b45c57c51882519790c7441)
 
@@ -148,22 +187,17 @@
 
 > 9.redux
 
+<a name="setState"></a>
+
 * redux和vuex将数据和行为集中管理
 * 提供数据读取、修改，数据单向流
 * 外部无法直接更改数据
 
 > 10.受控组件和非受控组件
 
+<a name="受控组件和非受控组件"></a>
+
 * 受控组件表单数据是组件状态控制的
 * 非受控组件表单数据需要通过Dom获取不受状态控制
 
-
-> 11.fiber
-
-[fiber架构](https://www.jianshu.com/p/bf824722b496)
-
-* 为什么移除componentWillMounted
-    * 因为在render之前，如果发生优先级更高的任务
-    * rende可能会被打断去执行优先级更高的任务，执行完成后再回来重头开始执行渲染组件
-    * 所以render前的生命周期都有可能会被重复调用
 

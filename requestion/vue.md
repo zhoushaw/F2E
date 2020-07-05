@@ -1,13 +1,48 @@
 
-[vue常见问题](https://juejin.im/post/5d59f2a451882549be53b170)
+推荐阅读-[vue常见问题](https://juejin.im/post/5d59f2a451882549be53b170)
+
+
+## 目录
+
+* [vue为什么实例上可以直接访问到data中的值](#基础知识)
+* [什么是MVVM、MVC](#什么是MVVM、MVC)
+* [如何实现数据响应](#如何实现数据响应)
+* [vue中如何实现数组监听](#vue中如何实现数组监听)
+* [nextTick回调为什么会在dom更新后才触发](#nextTick回调)
+* [vue的生命周期](#vue的生命周期)
+* [computed、watcher](#computed、watcher)
+* [v-if和v-show的区别](#v-if和v-show的区别)
+* [为什么data用的是一个函数](#为什么data用的是一个函数)
+* [v-model如何实现的](#v-model如何实现的)
+* [@on事件的处理](#@on事件的处理)
+* [vue-router实现原理](#vue-router实现原理)
+* [打包多页](#打包多页)
+* [预渲染与服务端渲染](#预渲染与服务端渲染)
+* [proxy和Object.definedProperty](#proxy和Object.definedProperty)
+* [vue和react选型](#vue和react选型)
+* [vue组件通信有哪几种方式](#vue组件通信有哪几种方式)
+* [vuex](#vuex)
+* [keep-alive](#keep-alive)
+* [minx和extend](#minx和extend)
+* [虚拟dom和diff算法](#虚拟dom和diff算法)
+* [vue高阶组件](#vue高阶组件)
+* [directives指令](#directives指令)
+* [vue-router生命周期](#vue-router生命周期)
+* [slot](#slot)
+
+## 内容
 
 > 1.vue为什么实例上可以直接访问到data中的值
+
+<a name="vue实例data"></a>
 
 * 在vue进行初始化的时候对data中的键进行遍历
 * 访问和修改实例上的属性都通过Object.definedProperty代理到了data上
 
 
 > 2.什么是MVVM、MVC
+
+<a name="什么是MVVM、MVC"></a>
 
 * MVC
     * 分别是model、view、controller，model和view不直接联系，联系是单向的
@@ -25,11 +60,15 @@
 
 > 3.如何实现数据响应
 
+<a name="如何实现数据响应"></a>
+
 * Vue对data中的数据get、set操作进行拦截，当get时会获取当前的Watcher对象，如果存在Watcher对象将Wacher对象推入订阅队列中，set时通知订阅队列中的Watcher，执行更新操作
 * 初始化阶段结束后，Vue会新建一个Watcher，这个Watcher的更新操作时会执行render操作
 * render操作时会获取模板上使用的data数据，使用data数据会触发get操作将当前Watcher存入通知队列中，更改对应数据时会通知render执行更新操作
 
 > 4.vue中如何实现数组监听
+
+<a name="vue中如何实现数组监听"></a>
 
 * 如果浏览器支持'__proto__'属性，会直接通过更改__proto__属性，来改变data中数组的原型
 * 如果不支持__proto__属性，会直接通过复制新的数组方法到data中数组上
@@ -38,6 +77,8 @@
 
 > 5.nextTick回调为什么会在dom更新后才触发,多次更改data中的数据为何只会触发一次更新
 
+<a name="nextTick回调"></a>
+
 * $nextTick的设置实际上是利用了eventLoop，浏览器中将事件分为微任务和宏任务
 * 浏览器中在单线程中为保证代码执行不会阻塞，单独分出了两个异步事件队列在同步任务执行完成后，会清空微任务队列，在执行宏任务队列
 * 在更新data数据后，会将通过watcher通知render重新渲染，通知重渲染时在内部调用了nextTick，会在同步代码执行完执行微任务时才会重渲染，所以多次改变data数据只会触发一次
@@ -45,6 +86,8 @@
 
 
 > 6.vue的生命周期
+
+<a name="vue的生命周期"></a>
 
 * vue的生命周期可以分为一下几个阶段
     * beforeCreated，这个阶段Vue实例进入初始化阶段，刚初始化完成内部事件、生命周期，还没有对methods事件、data进行初始化，无法访问methods、data，并且不能进行更改
@@ -61,6 +104,8 @@
     * 摧毁阶段：父：beforeDestory，子：beforeDestroy、destroyed，父destoryed
 
 > 7.vue的computed、watcher：
+
+<a name="computed、watcher"></a>
 
 * computed在data初始化后初始化，initComputed时会为每个key建立一个Watcher
 * Watcher触发后通知的回调是computed的getter函数，这些Watcher会被缓存起来
@@ -85,16 +130,22 @@
 
 > 8.v-if和v-show的区别
 
+<a name="v-if和v-show的区别"></a>
+
 * v-if是判断是否渲染，false，dom不渲染出来，更改成false直接从dom移除
 * v-show是通过更改，display属性，为false条件时，display为none
 
 
 > 9.为什么data用的是一个函数
 
+<a name="为什么data用的是一个函数"></a>
+
 * 因为每个实例用的都是同一个构造函数，data是对象应用类型
 * 如果不是一个函数每次执行时生成对象，可以保证实例间data不互相冲突
 
 > 10.v-model如何实现的
+
+<a name="v-model如何实现的"></a>
 
 * `v-model`对于表单组件而言只是语法糖
     * 实际上`<input v-model="val" />`会转变成`<input :value="val" @input="val = $event.target.val"/>`的语法糖
@@ -102,12 +153,16 @@
 
 > 11.@on事件的处理
 
+<a name="@on事件的处理"></a>
+
 * 在dom上使用，会将其转换成addEventListener、加入指定的监听事件
 * 在组件上使用，会将其编程发布订阅模式，在父组件上通过vm.$on将订阅事件加入队列中
 * 当子组件使用时，通知父组件执行队列中的事件
 
 
 > 11.vue-router实现原理
+
+<a name="vue-router实现原理"></a>
 
 * 两种模式：
     * hash模式
@@ -136,11 +191,15 @@
 
 > 12.打包多页
 
+<a name="打包多页"></a>
+
 * 多入口多出口，每个页面都是一个vue实例
 * 提取公共js，并缓存。每个页面单独js
 
 
 > 13.预渲染与服务端渲染
+
+<a name="预渲染与服务端渲染"></a>
 
 * 预渲染：
     * 实现：
@@ -154,6 +213,8 @@
     
 > 14.proxy和Object.definedProperty
 
+<a name="proxy和Object.definedProperty"></a>
+
 * 不同点：
     * 属性劫持：
         * Object.definedProperty是通过对对象上的属性进行劫持，如果属性也是对象需要深度遍历，新增属性需要对新属性进行劫持。
@@ -162,6 +223,8 @@
         * Proxy支持13中拦截方式，get、set、has、delete、apply等
 
 > 14.vue和react选型
+
+<a name="vue和react选型"></a>
 
 [vue、react对比](https://juejin.im/post/5e153e096fb9a048297390c1)
 [详细对比 ](https://juejin.im/post/5c0a92f2e51d455b3d3dc181)
@@ -240,6 +303,8 @@
 
 > 15.vue组件通信有哪几种方式
 
+<a name="vue组件通信有哪几种方式"></a>
+
 * props、$emit
 * ref、this.$parent、this.$children
 * eventBus,$emit、$on
@@ -247,6 +312,8 @@
 * vuex跨组件通信
 
 > 16.vuex
+
+<a name="vuex"></a>
 
 [vuex源码分析](https://zhuanlan.zhihu.com/p/78981485)
 
@@ -276,6 +343,8 @@
         * computed会生成一个watcher，data中的数据会收集当前的watcher，值更新时触发watcher更新
 
 > 17.keep-alive
+
+<a name="keep-alive"></a>
 
 [keep-alive原理](https://juejin.im/post/5cce49036fb9a031eb58a8f9)
 
@@ -311,6 +380,8 @@
 
 > 18.minx和extend
 
+<a name="minx和extend"></a>
+
 * mixin
     * 使用：可以在vue实例上混入options，可以混入到全局，每个实例都会有
     * 原则：
@@ -323,6 +394,8 @@
     * data必须是函数
 
 > 19.虚拟dom和diff算法
+
+<a name="虚拟dom和diff算法"></a>
 
 [什么是虚拟dom](https://juejin.im/post/5d3f3bf36fb9a06af824b3e2)
 [为什么不用index作为key](https://juejin.im/post/5e8694b75188257372503722)
@@ -376,6 +449,8 @@
 
 > 20.vue高阶组件
 
+<a name="vue高阶组件"></a>
+
 * [vue高阶组件](https://juejin.im/post/5e8b5fa6f265da47ff7cc139)
 * [编写vue高阶组件](https://juejin.im/post/5dda5f746fb9a07ac468b959)
 
@@ -385,11 +460,15 @@
 
 > 21.directives指令
 
+<a name="directives指令"></a>
+
 * vue可以通过directives复用一些公关逻辑
 * 生命周期：
     * bind、inserted、update、componentUpdate、unbind
 
 > 22.vue-router生命周期
+
+<a name="vue-router生命周期"></a>
 
 * beforeRouterEnter：路由进入该组件调用
 * beforeRouterLeave：离开时调用
@@ -397,6 +476,8 @@
 
 
 > 23.slot
+
+<a name="slot"></a>
 
 * 获取slot内容，`this.$slots`，获取插槽内容
 * 在内部`:name="val"`传入值给上层模板，通过`slot-scoped`获取值
