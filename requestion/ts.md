@@ -1,4 +1,6 @@
 
+**待完善**
+
 [Typescript入门教程](https://ts.xcatliu.com/basics/type-of-object-interfaces)
 [Typescript高阶技巧](https://segmentfault.com/a/1190000019449565?utm_source=tag-newest)
 [高阶入门](https://juejin.im/post/5ea40427518825736f6434ef)
@@ -55,3 +57,5 @@ type Omit<T,K extends keyof T> = Partial<T,Exclude<keyof T,K>>
 * interface可以合并，属性可设置，可选、只读
 
 > 9.枚举
+
+

@@ -5,7 +5,7 @@
 * 浏览器渲染步骤过程，html如何渲染出来的，具体步骤
 * vue渲染过程
 * 304啥意思，http文件修改时间具体是怎么样子的，last-modify怎么保证各端时间一致,和etag有什么区别
-* px转rem怎么实现
+* px转rem怎么实现,loader
 * proxy和Object.definedProperty细节区别
 * vue2.0与vue3.0区别
 * 你在项目里做了哪些具体的性能优化
