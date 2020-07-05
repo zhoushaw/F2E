@@ -1,14 +1,40 @@
 
+## 目录
 
-> 1.你用过哪些loader，
+* [你用过哪些loader](#你用过哪些loader)
+* [你用过哪些plugin](#你用过哪些plugin)
+* [loader和plugin区别](#loader和plugin区别)
+* [webpack构建流程](#webpack构建流程)
+* [提高效率的插件](#提高效率的插件)
+* [source-map](#source-map)
+* [webpack如何模块化打包](#webpack如何模块化打包)
+* [webpack如何热更新模块](#webpack如何热更新模块)
+* [文件指纹](#文件指纹)
+* [如何让loader按照预想的顺序执行](#如何让loader按照预想的顺序执行)
+* [你有写过loader吗](#你有写过loader吗)
+* [优化webpack的构建速度](#优化webpack的构建速度)
+* [代码分割](#代码分割)
+* [babel](#babel)
+* [webpack如何实现动态导入](#webpack如何实现动态导入)
+
+
+## 内容
+
+> 1.你用过哪些loader
+
+<a name="你用过哪些loader"></a>
 
 * vue-loader，file-loader、img-loader、source-map-loader、sass-loader、css-loader、babel-loader
 
 > 2.你用过哪些plugin
 
+<a name="你用过哪些plugin"></a>
+
 * html-webpack-plugin、webpack-bundle-analyzer
 
-> 3.loader和plugin
+> 3.loader和plugin区别
+
+<a name="loader和plugin区别"></a>
 
 * loader：
     * loader配置在module.rules中，每一个都是一个对象，包括：test(应用范围)、use数组包括（loader(使用哪些loader)、options(参数)）
@@ -16,6 +42,8 @@
     * plugin中单独配置，每一项是一个Plugin实例，参数通过构造函数传入
 
 > 4.webpack构建流程
+
+<a name="webpack构建流程"></a>
 
 * 合并配置参数（包括shell中的参数）
 * 使用合并后的参数初始化Compiler对象，加载所有插件，执行对象的run方法开始编译
@@ -26,11 +54,15 @@
 
 > 5.提高效率的插件
 
+<a name="提高效率的插件"></a>
+
 * webpack-marge
 * size-plugin
 * HotModuleReplaceMentPlugin
 
 > 6.source-map
+
+<a name="source-map"></a>
 
 * sourceMap是一个文件，这个文件里面存储了，转换前代码对应的位置信息
 * sourcemap的作用，打包压缩后的代码可读性和调试能力非常差，想要调试就必须要用到source-map,map文件不打开控制台是不会加载的
@@ -41,7 +73,13 @@
 
 > 7.webpack如何模块化打包
 
+<a name="webpack如何模块化打包"></a>
+
+...待补充
+
 > 8.webpack如何热更新模块
+
+<a name="webpack如何热更新模块"></a>
 
 * 模块：Hot Module ReplaceMent ，模块化热更新，简称HMR。可以不用刷新浏览器，将旧的模块变成新的模块
 * HRM核心，浏览器去服务端拉取更新后的模块，准确的说是chunk diff，chunk需要更新的部分。
@@ -57,18 +95,24 @@
 
 > 9.文件指纹
 
+<a name="文件指纹"></a>
+
 * 文件指纹指的是文件名的后缀
     * hash：整个项目的hash值，与整个项目有关，只要整个项目有修改hash值就会有变化
     * chunkHash：和webpack打包的chunk有关，不同的entry会产生不同的chunkHash
     * contentHash：文件内容hash，只要文件内容不变contentHash就不变
 
-> 10.如何让loader按照预想的顺序执行：
+> 10.如何让loader按照预想的顺序执行
+
+<a name="如何让loader按照预想的顺序执行"></a>
 
 * 给rules添加enforce
     * pre，在所有loader前执行
     * post，在所有loader后执行
 
 > 11.你有写过loader吗
+
+<a name="你有写过loader吗"></a>
 
 * 从右向左，从下向上，可以通过enforce：'pre'，指定在最前面执行
 * 我写过一个读取ejs文件，将toml配置信息转化到模板上的loader
@@ -95,6 +139,8 @@
     * 根据模板，确定不同模板的头和尾
 
 > 12.优化webpack的构建速度
+
+<a name="优化webpack的构建速度"></a>
 
 * 使用更高版本的webpack、node
 * 多进程、多实例构建：thread-loader
@@ -131,6 +177,8 @@
 
 > 13.代码分割
 
+<a name="代码分割"></a>
+
 * 入口：使用entry配置手动分离代码
     * 只要在entry配置入口即可
 * 动态导入：通过模块的内联函数来分离代码
@@ -145,6 +193,8 @@
 
 > 14.babel
 
+<a name="babel"></a>
+
 * babel提供了将代码抽象成语法树、遍历语法树更改语法树、将语法树生成code
 * 将代码变成语法树：Babylon、Babylon.parse
 * 深度遍历语法树：babel-traverse、
@@ -154,6 +204,8 @@
 提供了：babel.transform、babel.type
 
 > 14.webpack如何实现动态导入
+
+<a name="webpack如何实现动态导入"></a>
 
 [webpack实现动态导入](https://juejin.im/post/5d26e7d1518825290726f67a)
 

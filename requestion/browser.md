@@ -1,5 +1,25 @@
 
+## 目录
+
+* [event loop](#eventloop)
+* [缓存](#缓存)
+* [浏览器存储](#浏览器存储)
+* [重绘与回流](#重绘与回流)
+* [点击穿透](#点击穿透)
+* [事件捕获与冒泡](#事件捕获与冒泡)
+* [停止冒泡和捕获与阻止默认行为](#停止冒泡和捕获与阻止默认行为)
+* [webworker多进程](#webworker多进程)
+* [JSbridge](#JSbridge)
+* [浏览器有几个线程](#浏览器有几个线程)
+* [浏览器渲染html](#浏览器渲染html)
+* [垃圾回收](#垃圾回收)
+* [标签通信](#标签通信)
+
+## 内容
+
 > 1.event loop
+
+<a name="eventloop"></a>
 
 * 浏览器环境
     * 1.首先执行同步任务，遇到异步任务会挂起，异步任务回调结束了会将其根据异步任务的类型分类
@@ -28,6 +48,8 @@
 
 > 2.缓存
 
+<a name="缓存"></a>
+
 * appcache：
     * 设置：html 设置`<html manifest="list.manifest">`
     * 声明：list.manifest文件，并配置可缓存的资源
@@ -36,6 +58,8 @@
 
 
 > 3.浏览器存储
+
+<a name="浏览器存储"></a>
 
 * cookie的诞生是基于http无状态的特性
     * cookie组成部分：
@@ -134,6 +158,8 @@
             ```
 > 4.重绘与回流
 
+<a name="重绘与回流"></a>
+
 * 前置内容：
     * 浏览器是流式布局的
     * 浏览器会将HTML解析成DOM（Document object model）、CSSOM（css object model）、两者合并生成render tree
@@ -175,6 +201,8 @@
 
 > 5.点击穿透：
 
+<a name="点击穿透"></a>
+
 * 出现原理
     * 原来页面支持双击放大
     * 移动端click事件会有300ms延迟，浏览器会判断是否缩放
@@ -182,6 +210,8 @@
         * `<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />`
 
 > 6.事件捕获与冒泡
+
+<a name="事件捕获与冒泡"></a>
 
 * 事件捕获与冒泡主要是为了解决，内层元素、与外层元素都绑定了事件，点击内层元素是内层元素先触发还是外层元素先触发
 * DOM0级事件绑定：
@@ -195,6 +225,8 @@
             * 是否捕获和是否最多调用一次
             * 是否捕获
 > 7.停止冒泡和捕获与阻止默认行为
+
+<a name="停止冒泡和捕获与阻止默认行为"></a>
 
 * 当我们在内层元素添加事件时，点击事件会向上冒泡，我们不希望他向上冒泡可以通过
     * `e.stopPropagation()`
@@ -223,6 +255,8 @@ var a = document.getElementById("testA");
 ```
 > 8.webworker多进程
 
+<a name="webworker多进程"></a>
+
 * [阮一峰 web worker](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
 * 出现原因：
     * 由于JavaScript是单线程，在CPU计算能力增加多核的情况下，单线程无法充分利用CPU资源会导致CPU资源的浪费
@@ -248,6 +282,8 @@ var a = document.getElementById("testA");
         * 关闭进程：`self.close();`
 
 > 9.JSbridge
+
+<a name="JSbridge"></a>
 
 * [参考文章](https://juejin.im/post/5e5248216fb9a07cb0314fc9)
 * 功能：给JavaScript提供调用Native的能力，核心是Native和非Native的通信通道，而且是双向通信通道
@@ -279,6 +315,8 @@ var a = document.getElementById("testA");
 
 > 10.浏览器有几个线程
 
+<a name="浏览器有几个线程"></a>
+
 * GUI渲染线程
 * JavaScript线程
 * 事件触发线程
@@ -287,6 +325,8 @@ var a = document.getElementById("testA");
 * 异步http请求线程
 
 > 11.浏览器渲染html
+
+<a name="浏览器渲染html"></a>
 
 [渲染过程](https://juejin.im/post/59d489156fb9a00a571d6509)
 
@@ -316,6 +356,8 @@ var a = document.getElementById("testA");
 
 > 13.垃圾回收
 
+<a name="垃圾回收"></a>
+
 [GC垃圾回收](https://juejin.im/post/5a6b3fcaf265da3e2c385375)
 [常见内存泄漏](https://juejin.im/post/5b684f30f265da0f9f4e87cf)
 
@@ -331,6 +373,8 @@ var a = document.getElementById("testA");
     * 导致运行减速或系统崩溃
 
 > 14.标签通信
+
+<a name="标签通信"></a>
 
 * postMessage
 * localstorage

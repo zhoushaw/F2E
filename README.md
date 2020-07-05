@@ -22,7 +22,7 @@
     * [css性能优化](./requestion/css.md#css性能优化)
 * 前端框架
     * [vue高频题](./requestion/vue.md)
-        * [vue为什么实例上可以直接访问到data中的值](./requestion/vue.md#基础知识)
+        <!-- * [vue为什么实例上可以直接访问到data中的值](./requestion/vue.md#基础知识)
         * [什么是MVVM、MVC](./requestion/vue.md#什么是MVVM、MVC)
         * [如何实现数据响应](./requestion/vue.md#如何实现数据响应)
         * [vue中如何实现数组监听](./requestion/vue.md#vue中如何实现数组监听)
@@ -46,9 +46,9 @@
         * [vue高阶组件](./requestion/vue.md#vue高阶组件)
         * [directives指令](./requestion/vue.md#directives指令)
         * [vue-router生命周期](./requestion/vue.md#vue-router生命周期)
-        * [slot](./requestion/vue.md#slot)
+        * [slot](./requestion/vue.md#slot) -->
     * [react高频题](./requestion/react.md)
-        * [函数式组件与类组件有什么不同](./requestion/react.md#函数式组件与类组件有什么不同)
+        <!-- * [函数式组件与类组件有什么不同](./requestion/react.md#函数式组件与类组件有什么不同)
         * [JSX](./requestion/react.md#JSX)
         * [React高阶组件](./requestion/react.md#React高阶组件)
         * [性能优化](./requestion/react.md#性能优化)
@@ -57,16 +57,27 @@
         * [fiber](./requestion/react.md#fiber)
         * [setState](./requestion/react.md#setState)
         * [redux](./requestion/react.md#redux)
-        * [受控组件和非受控组件](./requestion/react.md#受控组件和非受控组件)
+        * [受控组件和非受控组件](./requestion/react.md#受控组件和非受控组件) -->
 
 * 周边生态
     * [webpack](./requestion/webpack.md)
-        
 * [浏览器相关](./requestion/browser.md)
 * [性能优化相关](./requestion/performance.md)
 * [网络相关高频题](./requestion/network.md)
 * [node高频题](./requestion/node.md)
+    * [pm2](./requestion/node.md#pm2)
+    * [Cluster](./requestion/node.md#Cluster)
+    * [进程守护](./requestion/node.md#进程守护)
+    * [Koa中间件实现](./requestion/node.md#Koa中间件实现)
+    * [node常用模块](./requestion/node.md#node常用模块)
+    * [大文件下载、上传、大文件读取](./requestion/node.md#大文件下载、上传、大文件读取)
+    * [pipe](./requestion/node.md#pipe)
+    * [commonJS原理](./requestion/node.md#commonJS原理)
+    * [查看内存占用情况](./requestion/node.md#查看内存占用情况)
 * [安全相关](./requestion/safe.md)
+    * [xss攻击](./requestion/safe.md#xss攻击)
+    * [CSRF](./requestion/safe.md#CSRF)
+
 
 
 ## 公众号

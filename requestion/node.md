@@ -1,8 +1,26 @@
+## 推荐阅读
 
 * [node进程与线程](https://juejin.im/post/5d43017be51d4561f40adcf9)
 * [node-interview](https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn)
 
+
+## 目录
+
+* [pm2](#pm2)
+* [Cluster](#Cluster)
+* [进程守护](#进程守护)
+* [Koa中间件实现](#Koa中间件实现)
+* [node常用模块](#node常用模块)
+* [大文件下载、上传、大文件读取](#大文件下载、上传、大文件读取)
+* [pipe](#pipe)
+* [commonJS原理](#commonJS原理)
+* [查看内存占用情况](#查看内存占用情况)
+
+## 内容
+
 > 1.pm2
+
+<a name="pm2"></a>
 
 * 功能：
     * 进程守护
@@ -80,6 +98,8 @@ pm2 start app.js --watch -i max -n first_app
 
 > 2.Cluster
 
+<a name="Cluster"></a>
+
 * 前置知识：
     * 进程：资源分配的最小单位，一个进程可以包括多个线程
     * 线程：资源调度的最小单位，一个线程只能隶属于一个进程
@@ -133,6 +153,8 @@ if (cluster.isMaster) {
 
 > 3.进程守护
 
+<a name="进程守护"></a>
+
 * 普通的进程当用户退出终端后就会直接关闭，&符号将进程放入后台，之后会由于会话session组而被回收而终止进程
 * 守护进程并不依赖终端进程，不会因为终端进程退出
 
@@ -144,6 +166,8 @@ if (cluster.isMaster) {
 [node实现进程守护](https://cnodejs.org/topic/57adfadf476898b472247eac)
 
 > 4.Koa中间件实现
+
+<a name="Koa中间件实现"></a>
 
 [koa中间件](https://juejin.im/post/5be3a0a65188256ccc192a87)
 
@@ -165,6 +189,8 @@ if (cluster.isMaster) {
 
 > 5.node常用模块
 
+<a name="node常用模块"></a>
+
 * fs
 * child_process,通过子进程执行命令行
     * exec、execFile
@@ -176,6 +202,8 @@ if (cluster.isMaster) {
 * http
 
 > 6.大文件下载、上传、大文件读取
+
+<a name="大文件下载、上传、大文件读取"></a>
 
 [node读写大文件](https://www.cnblogs.com/fengmk2/archive/2011/08/16/2140460.html)
 
@@ -191,6 +219,8 @@ if (cluster.isMaster) {
 
 > 7.pipe
 
+<a name="pipe"></a>
+
 [node-pipe的实现](https://cnodejs.org/topic/56ba030271204e03637a3870)
 
 * 将目标获取的数据写入可写流中（将可读流写入可写流中）
@@ -200,7 +230,11 @@ if (cluster.isMaster) {
 
 > 8.commonJS原理
 
-[深入commonJS原理](https://juejin.im/post/5b67c342e51d45172832123d)
+<a name="commonJS原理"></a>
+
+推荐阅读：[深入commonJS原理](https://juejin.im/post/5b67c342e51d45172832123d)
+
+* [源码实现](../浏览器/模块化/polyfill-commonJS/commonjs.js)
 
 * commonJS的实现：
     * commonJS会去找到绝对路径文件
@@ -229,5 +263,7 @@ if (cluster.isMaster) {
 
 
 > 9.查看内存占用情况
+
+<a name="查看内存占用情况"></a>
 
 * process.memoryUsage

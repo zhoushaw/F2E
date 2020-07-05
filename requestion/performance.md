@@ -1,5 +1,17 @@
 
+## 目录
+
+* [编写时优化](#编写时优化)
+* [框架层面优化](#框架层面优化)
+* [SSR](#SSR)
+* [性能监控](#性能监控)
+* [白屏时间和首屏时间](#白屏时间和首屏时间)
+
+## 内容
+
 > 1.编写时优化
+
+<a name="编写时优化"></a>
 
 * 重绘和重排
     * 减少不必要的重绘和重排
@@ -11,6 +23,8 @@
     * 使用`document fragment`将DOM更改一次性写入
 
 > 2.框架层面优化
+
+<a name="框架层面优化"></a>
 
 * 首屏优化：
     * app根节点，增加loading内容，svg。通过html-webpack-plugin增加loading
@@ -45,6 +59,8 @@
 
 > 3.SSR
 
+<a name="SSR"></a>
+
 * 原理：
     * 搭建一个node服务，通过`vue-server-renderer`将vue实例转化为html，将html返回
     * vue服务端渲染，将源码通过webpack打包出两个bundle，其中server bundle是给服务端用的，另一个是给client bundle是给客户端用的，服务端只是生成首屏页面所需要的html，后期的交互和数据处理还是通过支持浏览器的Client bundle来完成的
@@ -60,7 +76,9 @@
 
 
 
-> 12.性能监控
+> 4.性能监控
+
+<a name="性能监控"></a>
 
 [性能监控](https://juejin.im/post/5b7a50c0e51d4538af60d995)
 [性能优化](https://juejin.im/post/5b6fa8c86fb9a0099910ac91)
@@ -80,7 +98,9 @@ console.log('onload时间 ：' + (t.loadEventEnd - t.navigationStart).toFixed(0)
 ```
 
 
-> 13.白屏时间和首屏时间
+> 5.白屏时间和首屏时间
+
+<a name="白屏时间和首屏时间"></a>
 
 [计算白屏、首屏时间](https://juejin.im/post/5df4294d518825128306cd5c)
 

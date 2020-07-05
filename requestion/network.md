@@ -1,6 +1,29 @@
 
+## 目录
+
+* [输入url到展示经过了哪些步骤](#输入url到展示经过了哪些步骤)
+* [三次握手](#三次握手)
+* [四次挥手](#四次挥手)
+* [https与http](#https与http)
+* [http请求中的get和post请求方式的区别](#http请求中的get和post请求方式的区别)
+* [常见的http状态](#常见的http状态)
+* [TCP和UDP的区别](#TCP和UDP的区别)
+* [跨域](#跨域)
+* [缓存](#缓存)
+* [http1.0、http1.1、http2.0](#http1.0、http1.1、http2.0)
+* [websocket](#websocket)
+* [Preload、prefetch](#Preload、prefetch)
+* [cookie和session](#cookie和session)
+* [JWT](#JWT)
+* [CDN](#CDN)
+* [nds](#dns在哪里)
+
+## 内容
+
 
 > 1.输入url到展示经过了哪些步骤
+
+<a name="输入url到展示经过了哪些步骤"></a>
 
 [http请求经过哪些步骤](https://www.cnblogs.com/slivens/p/12902145.html)
 
@@ -24,6 +47,9 @@
 
 > 2.三次握手
 
+<a name="三次握手"></a>
+
+
 三次握手的目的：保证客户端和服务端都具有，发送、接收数据的能力
 
 三次握手指的是传输层的Tcp协议为保证数据传输有效性的的策略：
@@ -40,6 +66,8 @@
 
 > 3.四次挥手
 
+<a name="四次挥手"></a>
+
 双方都处于established状态
 
 * 第一次挥手客户端发送FIN报文，报文中会指定一个序列号。此时客户端处于FIN_WAIT1-1状态
@@ -50,6 +78,8 @@
 服务端收到ACK后就关闭了
 
 > 4.https与http
+
+<a name="https与http"></a>
 
 [https](https://juejin.im/post/59e4c02151882578d02f4aca#heading-5)
 [https详细交互过程](https://www.jianshu.com/p/42e1c073c142)
@@ -91,6 +121,9 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 5.http请求中的get和post请求方式的区别
 
+<a name="http请求中的get和post请求方式的区别"></a>
+
+
 * get支持传输的数据类型较少只能通过url上拼接参数传递，无法传输字节流，post请求，支持传输的数据类型多，包括json、form表单，二进制文件
 * get请求在进行跨域请求时浏览器不会触发options请求，post在跨域请求时，会触发options请求
 * get传输的数据类型取决于浏览器地址的长度，post传输的数据量比get更大
@@ -110,6 +143,8 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 6.常见的http状态
 
+<a name="常见的http状态"></a>
+
 * 100（继续）
 * 200（服务端成功响应）
 * 301（永久重定向）包括location、302（临时重定向）、304（没有修改，从缓存读取）
@@ -119,10 +154,14 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 7.TCP和UDP的区别
 
+<a name="TCP和UDP的区别"></a>
+
 * TCP协议是面向连接的协议，为保证数据可靠性，它有三次握手、四次挥手的策略。只能一对一通信
 * UDP协议不是面向连接的，接收端和发送端不建立连接，发送方需要发送数据时，会直接向接收方发送数据，传输速度和时效很高，但不能保证数据是否正确传输，支持一对一或一对多通信
 
 > 8.跨域
+
+<a name="跨域"></a>
 
 * 什么是跨域，什么时候回出现跨域需求：
     * 跨域是出于浏览器的同源策略限制，它限制了一个源的文档或脚本如何与另一个文档资源交互
@@ -142,6 +181,8 @@ SSL协议是位于http之下，TCP之上的协议
     * POSTmessage，跨窗口进行通信
 
 > 9.缓存
+
+<a name="缓存"></a>
 
 * 浏览器缓存
     * 缓存get请求200后的资源例如：HTML文档、图片、js，将这些资源缓存在本地
@@ -178,6 +219,7 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 10.http1.0、http1.1、http2.0
 
+<a name="http1.0、http1.1、http2.0"></a>
 
 * http1.0和http1.1
     * 缓存：由原来的expirse、last-modify增加etag、if-none-match提供更多缓存头来控制缓存
@@ -212,6 +254,8 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 11.websocket
 
+<a name="websocket"></a>
+
 * 来源：
     * socket不是协议，它是基于TCP/IP传输协议上的一层封装，可以理解为对TCP/IP的简单抽象
     * Websocket是包装了应用层面上的socket，他实现了服务端和浏览器的双工通信，实现了server push
@@ -231,6 +275,8 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 12.Preload、prefetch
 
+<a name="Preload、prefetch"></a>
+
 * link-type
     * rel=`stylesheet`
 
@@ -249,6 +295,8 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 13.cookie和session
 
+<a name="cookie和session"></a>
+
 * session存在于服务端，在用户第一次请求时生成session
 * 将sessionId放在cookie中返回给浏览器，后续http请求会携带cookie，cookie中存在sessionid
 * 服务端根据对应的sessionId找到对应的session，进行会话记录
@@ -263,12 +311,17 @@ SSL协议是位于http之下，TCP之上的协议
 
 > 14.JWT
 
+<a name="JWT"></a>
+
+
 * 全称：json web token，通过生成token
 * 通过token代替session，服务端不用存储会话
 * 可以有效的方式CSRF跨站追踪攻击
 
 
 > 15.CDN
+
+<a name="CDN"></a>
 
 [深入了解cdn](https://juejin.im/post/59ba146c6fb9a00a4636d8b6)
 
@@ -282,6 +335,8 @@ SSL协议是位于http之下，TCP之上的协议
     * 用户最后直接去这个cdn节点访问静态资源，如果这个节点资源部存在，就会回到源站找资源
 
 > 16.dns在哪里
+
+<a name="dns在哪里"></a>
 
 * DNS域名解析采用的是递归查询的方式，过程是
 * 先去找DNS缓存->缓存找不到就去找本地域名服务器->根域名服务器->根域名->com域名服务器，一层层查找
