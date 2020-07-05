@@ -2,6 +2,15 @@
 [复习资料](https://juejin.im/post/5e8b163ff265da47ee3f54a6)
 
 
+## 目录
+
+
+* 有哪些数据类型
+* 如何准确判断JS数据类型
+* 变量声明的
+
+## 内容
+
 > 1.基础数据类型
 
 string、number、boolean、null、undefined、symbol
