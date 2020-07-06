@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function(){
+        let oBody = document.querySelector('body');
+        let oDiv = document.createElement('div');
+        oDiv.innerHTML = '<style>div{height: 200px;width: 200px;background: red;}</style><div>hello</div>'
+
+        const { innerHTML } = oDiv;
+        oDiv.innerHTML = '';
+        const shadow = oDiv.attachShadow({ mode: 'closed' });
+        shadow.innerHTML = innerHTML;
+
+        console.log(shadow);
+        oBody.appendChild(oDiv);
+
+    }
+</script>
+<body>
+    <div class="other-div"></div>
+    <!-- <div class="box">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    </div> -->
+</body>
+</html>
