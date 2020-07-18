@@ -238,9 +238,9 @@
 * 渲染：
     * react：
         * react如果组件的某个状态发生变化，那么react会把此组件和其子组件全部重新渲染一遍
-        * 不过重新渲染不代表，抛弃上一次的渲染结果，react还是通过diff算法，path到最终dom上
+        * 不过重新渲染不代表，抛弃上一次的渲染结果，react还是通过diff算法，patch到最终dom上
         * 不过组件树过大，会造成不必要的性能浪费，diff算法会有一部分的性能开销
-        * react组件通过shouldComponentUpdate来判断组件是否需要执行后续的diff、path、update
+        * react组件通过shouldComponentUpdate来判断组件是否需要执行后续的diff、patch、update
         * 一般使用pureComponent来做这一层判断，pureComponent和shouldComponent只是浅比较，如果是对象引用没发生变化则认为没发生变化
         * 触发更新：
             * react进行的是浅比较，直接修改对象上的属性，再通过setState进行更新
@@ -369,14 +369,14 @@
     * vue渲染过程：
         * init=>$mounted=>compile=>render=>vnode=>patch=>DOM
         * vue在渲染时会调用原型上的_render函数将组建转换成一个vnode实例，而_render是调用createElement、createElementVnode两个函数做实例转化
-        * 完成Vnode实例化后，这时候Vue调用原型上的_update函数把Vnode渲染成真实DOM，这个过程通过path函数完成
+        * 完成Vnode实例化后，这时候Vue调用原型上的_update函数把Vnode渲染成真实DOM，这个过程通过patch函数完成
         * 在加载被包裹组件时，根据虚拟dom的compoenntinstanceof和keep-alive值判断是否有缓存，如果没有缓存会限制性keep-alive的render函数，通过render函数将被包裹组件进行缓存
         * 再次访问被包裹组件，vnode.componentInstance的值，已经是缓存组件的实例了，直接把上一次的dom插入到了父元素中
     * keep-alive不生成DOM：
         * vue在初始化生命周期为父子组件建立生命周期时根据abstract会忽略某个组件
     * 只执行一次钩子：
         * 由于被缓存组件设置了keep-alive并且已有组件缓存了，不再进入到$mount过程中，所以create、mouted生命周期不执行
-        * 在path的最后阶段会调用组件自身的actived函数
+        * 在patch的最后阶段会调用组件自身的actived函数
 
 > 18.minx和extend
 
@@ -409,7 +409,7 @@
     * virtual Dom是通过Vnode这么个class去描述定义的
     * Vnode包含什么：
         * 标签、属性、数据、键值
-        * 映射到真实dom需要经历VNode的create、diff、path过程
+        * 映射到真实dom需要经历VNode的create、diff、patch过程
         * create是通过createElement方法创建的
 * 怎么转换成虚拟dom的：
     * 通过将html编程token
@@ -421,7 +421,7 @@
         * 两个新旧节点子节点遍历，从头开始向尾部遍历。通过四个指针，分别判断新旧节点的子节点前和后
         * 如果子节点首节点为空向后移动，尾结点为空向前移动。新旧节点，分别进行头部和尾部比较
         * 如果同start或同end的新旧节点相同不用更新直接向前或向后移动，直接更新dom属性和子节点即可
-        * 如果旧节点的start和新节点的end相同，执行path
+        * 如果旧节点的start和新节点的end相同，执行patch
             * oldStratVn与newEndVn相同，显然是Vnode右移了，将oldStartVn移动到oldEndVn后面
             * 若while刚开始，那移动到oldEndVn右边就是最右边，是合理的
             * 若循环不是刚开始，因为比较是两头向中间比较，那么两头的dom位置已经是合理的了，移动到oldElement的右边也是合理的
