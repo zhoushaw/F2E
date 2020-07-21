@@ -5,7 +5,7 @@
 
 我会根据下图中的知识点去写这个系列，很多细节的点，可能想得不是很完善，大家可以去<a href="#公众号">【公众号】</a>获取最新文章或者加我<a href="#公众号">【微信】</a>提意见（别忘记 Star 哟）。
 
-![](./image/fe-tech.png)
+<!-- ![](./image/fe-tech.png) -->
 
 ## 目录
 
@@ -60,6 +60,8 @@
         * [受控组件和非受控组件](./requestion/react.md#受控组件和非受控组件) -->
 * 周边生态
     * [webpack](./requestion/webpack.md)
+* 前端架构
+    * [微前端](./JavaScript/架构/micro-front-end.md)
 * [浏览器相关](./requestion/browser.md)
 * [性能优化相关](./requestion/performance.md)
 * [网络相关高频题](./requestion/network.md)
