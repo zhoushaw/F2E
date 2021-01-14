@@ -76,11 +76,3 @@
     * [CSRF](./requestion/safe.md#CSRF) -->
 
 
-
-## 公众号
-<a name="公众号"></a>
-
-
-欢迎关注公众号"全栈精选"，给你推荐更多前端知识、程序员成长方面的知识
-
-![](./image/qcode1.png)
